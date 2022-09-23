@@ -1,0 +1,56 @@
+.imdb-header {
+  /* margin: 20px 50px 20px 50px; */
+  text-align: center;
+  padding: 10px;
+  background-color: #121212;
+  /* overflow: auto; */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo {
+  /* float: left;
+  width: 30%; */
+
+  align-self: center;
+  /* padding-left: 15px; */
+}
+
+#logo-img {
+  height: 33px;
+  /* float: left; */
+  cursor: pointer;
+}
+
+.title {
+  align-self: center;
+  color: white;
+  /* float: left; */
+  width: 40%;
+  font-weight: bold;
+  font-size: x-large;
+  cursor: pointer;
+}
+
+.headerButtons {
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  /* height: 30%; */
+  padding: 10px;
+  float: right;
+  /* margin-left: 8px; */
+
+  border: none;
+  text-decoration: none;
+  background-color: #121212;
+  color: white;
+  font-size: medium;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.headerButtons:hover {
+  background-color: grey;
+}

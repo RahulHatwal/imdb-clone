@@ -1,7 +1,7 @@
 import "./header.css";
 
 function Header() {
-  let isLoggedIn = false;
+  // let isLoggedIn = false;
   let imageUrl =
     "https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg";
   return (

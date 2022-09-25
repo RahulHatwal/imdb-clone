@@ -1,0 +1,53 @@
+.landingPage {
+  color: #f6c700;
+  /* margin-left: 10%;
+  margin-right: 10%; */
+  /* height: auto; */
+}
+
+.slideshow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #f6c700;
+  /* height: 50vh; */
+  margin: 20px;
+  /* min-width: 70%;
+  max-width: 80%; */
+  /* overflow: auto; */
+}
+
+.carousel-cover {
+  width: 80vw;
+  height: 80vh;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.favourites {
+  width: 80vw;
+  height: 80vh;
+  object-fit: cover;
+}
+
+.right-arrow {
+  top: 50%;
+  position: absolute;
+  right: 32px;
+  font-size: 3rem;
+  color: #f6c700;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  top: 50%;
+  position: absolute;
+  left: 32px;
+  font-size: 3rem;
+  color: #f6c700;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}

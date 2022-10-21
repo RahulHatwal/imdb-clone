@@ -1,0 +1,9 @@
+/* .slider {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+} */
+
+.carousel-img {
+  object-fit: cover;
+}

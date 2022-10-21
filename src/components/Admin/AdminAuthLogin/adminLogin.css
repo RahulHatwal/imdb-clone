@@ -1,0 +1,52 @@
+.adminLogin {
+  color: white;
+
+  margin: 40px 20% 10px 20%;
+
+  /* display: flex; */
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+}
+
+.adminLoginFormContent {
+  border: 2px solid white;
+  padding: 5%;
+  padding-right: 12%;
+  padding-left: 12%;
+}
+
+.adminLoginFormTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminLogintitle {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.adminLoginInputfield {
+  display: flex;
+  justify-content: space-between;
+  font-size: large;
+  /* justify-content: center; */
+}
+
+label {
+  margin-right: 10px;
+}
+
+#submitButton {
+  margin-top: 40px;
+  font-size: large;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.adminLoginSubmitDiv {
+  display: flex;
+  justify-content: center;
+}

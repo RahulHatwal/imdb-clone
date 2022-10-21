@@ -20,3 +20,10 @@ export const moviesImages = [
     Url: "https://www.moviehdwallpapers.com/wp-content/uploads/2013/10/Her-2013-Love-Story-Movie.jpg",
   },
 ];
+
+export const landingInfoData = [
+  "Reviews",
+  "Listings",
+  "All your favourite movies at one place",
+  "Welcome to IMDB",
+];

@@ -14,6 +14,7 @@ import AdminLogin from "./components/Admin/AdminAuthLogin/AdminLogin";
 import AdminSignUp from "./components/Admin/AdminAuthSignUp/AdminSignUp";
 import AddMovies from "./components/Admin/AdminPage/AddMovies/AddMovies";
 import UpdateMovies from "./components/Admin/AdminPage/UpdateMovies/UpdateMovies";
+import MovieCharts from "./components/MovieCharts/MovieCharts";
 
 export default class App extends Component {
   debugger;
@@ -64,7 +65,8 @@ export default class App extends Component {
       <div className="imdb-clone">
         <Header />
 
-        <AddMovies />
+        <MovieCharts />
+        {/* <AddMovies /> */}
         {/* <UpdateMovies /> */}
 
         {/* <Header

@@ -3,7 +3,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 function DropdownButton() {
   return (
     <Dropdown>
-      <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="sm">
         Ranking
       </Dropdown.Toggle>
 

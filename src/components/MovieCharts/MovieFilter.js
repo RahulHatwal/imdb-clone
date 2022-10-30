@@ -9,20 +9,32 @@ export default function MovieFilter(props) {
 
   return (
     <div className="filter-row">
-      <Table dark hover striped variant="dark">
-        <tr>
-          <th>Showing {movieList.length} Titles</th>
-          <th className="filterCol">
-            Sort by : <DropdownButton />
-          </th>
-          <th width="40">
-            <div className="sortIconCol">
-              <BsArrowUp />
-              <BsArrowDown />
-            </div>
-          </th>
-        </tr>
-      </Table>
+      <div className="text">Showing {movieList.length} Titles</div>
+      <div className="control">
+        <div>Sort by : </div>
+        <DropdownButton />
+        <div className="sortIcon">
+          <BsArrowUp />
+          <BsArrowDown />
+        </div>
+      </div>
     </div>
+
+    // <div className="filter-row">
+    //   <Table dark hover striped variant="dark">
+    //     <tr>
+    //       <th>Showing {movieList.length} Titles</th>
+    //       <th className="filterCol">
+    //         Sort by : <DropdownButton />
+    //       </th>
+    //       <th width="40">
+    //         <div className="sortIconCol">
+    //           <BsArrowUp />
+    //           <BsArrowDown />
+    //         </div>
+    //       </th>
+    //     </tr>
+    //   </Table>
+    // </div>
   );
 }

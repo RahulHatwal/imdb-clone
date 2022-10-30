@@ -1,0 +1,16 @@
+.filter-row {
+  border-top: 1px solid grey;
+  margin-top: 10px;
+}
+
+.filterCol {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.sortIconCol {
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

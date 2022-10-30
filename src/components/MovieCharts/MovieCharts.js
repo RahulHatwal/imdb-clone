@@ -3,9 +3,11 @@ import "./MovieCharts.css";
 import bootstrap from "../../bootstrapData";
 import { BsFillStarFill, BsFillBookmarkPlusFill, BsStar } from "react-icons/bs";
 import RatingModal from "./RatingModal";
+
 import { Rating } from "react-simple-star-rating";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import MovieFilter from "./MovieFilter";
 
 export default function MovieCharts() {
   console.log(bootstrap.movies.list);
@@ -16,7 +18,7 @@ export default function MovieCharts() {
         <div className="movie-charts-title">
           <h4>Movie charts</h4>
         </div>
-
+        <MovieFilter movieList={bootstrap.movies.list} />
         <div className="movie-charts-titleContainer">
           <div className="movie-charts-movieTitle">
             <h5>Rank & Title</h5>

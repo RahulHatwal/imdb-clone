@@ -64,7 +64,7 @@ const list = [
     year: 1994,
     rating: 9.2,
     numberOfRatings: 8319470138,
-    yourRating: 4,
+    yourRating: null,
     posterUrl:
       "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY67_CR0,0,45,67_AL_.jpg",
   },

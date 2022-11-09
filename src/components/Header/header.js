@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   appName,
   logoUrl,
@@ -6,70 +6,69 @@ import {
   signup,
   logout,
 } from "../../helpers/constants.js";
-import "./header.css";
+import "./Header.css";
 
-export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      onLogoClick: props.onLogoClick,
-      onSignupClick: props.onSignupClick,
-      onLoginClick: props.onLoginClick,
-    };
-  }
+const Header = (props) => {
+  console.log(props);
+  const logoutHandle = () => {
+    localStorage.clear();
+  };
 
   // setLoginState = (e) => {
   //   this.setState({
   //     isLoggedIn: false
   //   })
   // }
-
-  render() {
-    return (
-      <div className="imdb-header">
-        <div className="logo">
-          <img
-            id="logo-img"
-            src={logoUrl}
-            alt="IMDB Logo"
-            onClick={this.state.onLogoClick}
-          />
-        </div>
-        <div className="title">{appName}</div>
-        <div className="buttons">
-          {this.state.isLoggedIn ? (
-            <div id="buttons">
-              <input
-                type="button"
-                name="logout"
-                value={logout}
-                id="logout"
-                className="headerButtons"
-              />
-            </div>
-          ) : (
+  return (
+    <div className="imdb-header">
+      <div className="logo">
+        <img
+          id="logo-img"
+          src={logoUrl}
+          alt="IMDB Logo"
+          onClick={props.onLogoClick}
+        />
+      </div>
+      <div className="title">{appName}</div>
+      <div className="buttons">
+        {props.isLoggedIn ? (
+          <div id="buttons">
+            <input
+              type="button"
+              name="logout"
+              value={logout}
+              id="logout"
+              className="headerButtons"
+              onClick={logoutHandle}
+            />
+          </div>
+        ) : (
+          <div id="buttons">
             <input
               type="button"
               name="login"
               id="loginButton"
               value={login}
               className="headerButtons"
-              onClick={this.state.onLoginClick}
+              onClick={props.onLoginClick}
             />
-          )}
-          <input
-            type="button"
-            name="signup"
-            id="signupButton"
-            onClick={this.state.onSignupClick}
-            value={signup}
-            className="headerButtons"
-          />
-        </div>
+
+            <input
+              type="button"
+              name="signup"
+              id="signupButton"
+              onClick={props.onSignupClick}
+              value={signup}
+              className="headerButtons"
+            />
+          </div>
+        )}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default Header;
 
 // function Header() {
 //   this.state = {

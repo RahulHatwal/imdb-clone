@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MovieCharts.css";
 import bootstrap from "../../bootstrapData";
-import { BsFillStarFill, BsFillBookmarkPlusFill, BsStar } from "react-icons/bs";
+import { BsFillStarFill, BsFillBookmarkPlusFill } from "react-icons/bs";
 import RatingModal from "./RatingModal";
-
-import { Rating } from "react-simple-star-rating";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import MovieFilter from "./MovieFilter";
 import Table from "react-bootstrap/Table";
 
@@ -16,7 +12,9 @@ export default function MovieCharts() {
   return (
     <div id="main">
       <div className="imdb-movie-charts">
+
         <div className="article">
+
           <h3>IMDb Charts</h3>
           <h1 className="header">IMDb top Movies</h1>
           <div class="byline">
@@ -67,7 +65,9 @@ export default function MovieCharts() {
               </tbody>
             </Table>
           </div>
+
         </div>
+        
       </div>
     </div>
     // <div className="movie-charts">

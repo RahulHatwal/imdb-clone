@@ -1,6 +1,6 @@
 // import logo from "./logo.svg";
 import "./App.css";
-import Header from "./components/Header/header";
+import Header from "./components/Header/Header";
 import Landing from "./components/Landing/Landing";
 import { moviesImages } from "./components/LandingData/LandingData";
 // import CarouselSlider from "./components/Landing/CarouselSlider";
@@ -10,14 +10,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import Login from "./components/LogIn/Login";
 import SignUp from "./components/SignUp/SignUp";
-import AdminLogin from "./components/Admin/AdminAuthLogin/AdminLogin";
-import AdminSignUp from "./components/Admin/AdminAuthSignUp/AdminSignUp";
+
+// import Login from "./components/Admin/AdminAuthLogin/AdminLogin";
+// import SignUp from "./components/Admin/AdminAuthSignUp/AdminSignUp";
 import AddMovies from "./components/Admin/AdminPage/AddMovies/AddMovies";
 import UpdateMovies from "./components/Admin/AdminPage/UpdateMovies/UpdateMovies";
 import MovieCharts from "./components/MovieCharts/MovieCharts";
 
 export default class App extends Component {
-  debugger;
   constructor(props) {
     super(props);
     this.state = {
@@ -25,6 +25,7 @@ export default class App extends Component {
       showLogin: false,
       showSignUp: false,
     };
+    console.log(this.state);
   }
 
   showLoginForm = (e) => {
@@ -50,12 +51,10 @@ export default class App extends Component {
 
   // use getDerivedStateFromProps to check if props.isLoggedIn is true
   static getDerivedStateFromProps(props, state) {
-    if (props.isLoggedIn === true) {
-      return {
-        ...state,
-        isLoggedIn: !!props.isLoggedIn,
-      };
-    }
+    return {
+      ...state,
+      isLoggedIn: localStorage.token ? true : false,
+    };
   }
 
   // If true state.isLoggedIn should also be true
@@ -63,18 +62,20 @@ export default class App extends Component {
   render() {
     return (
       <div className="imdb-clone">
-        <Header />
-
-        <MovieCharts />
+        {/* <Header /> */}
+        {/* In  app.js*/}
+        {/* <MovieCharts /> */}
         {/* <AddMovies /> */}
         {/* <UpdateMovies /> */}
+        {console.log(this.state)}
 
-        {/* <Header
+        <Header
           isLoggedIn={this.state.isLoggedIn}
           onLoginClick={this.showLoginForm}
           onSignupClick={this.showSignupForm}
           onLogoClick={this.showLanding}
         />
+
         {this.state.showLogin ? (
           <Login />
         ) : this.state.showSignUp ? (
@@ -84,7 +85,7 @@ export default class App extends Component {
             isLoggedIn={this.state.isLoggedIn}
             moviesImages={moviesImages}
           />
-        )} */}
+        )}
         {/* <Login /> */}
         {/* <SignUp /> */}
         {/* <CarouselSlider /> */}

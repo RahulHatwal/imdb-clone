@@ -7,91 +7,80 @@ import { moviesImages } from "./components/LandingData/LandingData";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./components/LogIn/Login";
 import SignUp from "./components/SignUp/SignUp";
 
-// import Login from "./components/Admin/AdminAuthLogin/AdminLogin";
-// import SignUp from "./components/Admin/AdminAuthSignUp/AdminSignUp";
+// import AdminLogin from "./components/Admin/AdminAuthLogin/AdminLogin";
+// import AdminSignUp from "./components/Admin/AdminAuthSignUp/AdminSignUp";
 import AddMovies from "./components/Admin/AdminPage/AddMovies/AddMovies";
 import UpdateMovies from "./components/Admin/AdminPage/UpdateMovies/UpdateMovies";
 import MovieCharts from "./components/MovieCharts/MovieCharts";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoggedIn: false,
-      showLogin: false,
-      showSignUp: false,
-    };
-    console.log(this.state);
-  }
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
 
-  showLoginForm = (e) => {
-    this.setState({
-      showLogin: true,
-      showSignUp: false,
-    });
+  const showLoginForm = (e) => {
+    setShowLogin(true);
+    setShowSignUp(false);
   };
 
-  showSignupForm = (e) => {
-    this.setState({
-      showSignUp: true,
-      showLogin: false,
-    });
+  const showSignupForm = (e) => {
+    setShowLogin(false);
+    setShowSignUp(true);
   };
 
-  showLanding = (e) => {
-    this.setState({
-      showSignUp: false,
-      showLogin: false,
-    });
+  const showLanding = (e) => {
+    setShowLogin(false);
+    setShowSignUp(false);
   };
 
   // use getDerivedStateFromProps to check if props.isLoggedIn is true
-  static getDerivedStateFromProps(props, state) {
-    return {
-      ...state,
-      isLoggedIn: localStorage.token ? true : false,
-    };
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   return {
+  //     ...state,
+  //     isLoggedIn: localStorage.token ? true : false,
+  //   };
+  // }
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.token ? true : false);
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
 
   // If true state.isLoggedIn should also be true
 
-  render() {
-    return (
-      <div className="imdb-clone">
-        {/* <Header /> */}
-        {/* In  app.js*/}
-        {/* <MovieCharts /> */}
-        {/* <AddMovies /> */}
-        {/* <UpdateMovies /> */}
-        {console.log(this.state)}
+  return (
+    <div className="imdb-clone">
+      {/* <Header /> */}
+      {/* In  app.js*/}
+      {/* <MovieCharts /> */}
+      {/* <AddMovies /> */}
+      {/* <UpdateMovies /> */}
 
-        <Header
-          isLoggedIn={this.state.isLoggedIn}
-          onLoginClick={this.showLoginForm}
-          onSignupClick={this.showSignupForm}
-          onLogoClick={this.showLanding}
-        />
+      <Header
+        isLoggedIn={isLoggedIn}
+        onLoginClick={showLoginForm}
+        onSignupClick={showSignupForm}
+        onLogoClick={showLanding}
+      />
 
-        {this.state.showLogin ? (
-          <Login />
-        ) : this.state.showSignUp ? (
-          <SignUp />
-        ) : (
-          <Landing
-            isLoggedIn={this.state.isLoggedIn}
-            moviesImages={moviesImages}
-          />
-        )}
-        {/* <Login /> */}
-        {/* <SignUp /> */}
-        {/* <CarouselSlider /> */}
-        {/* <AdminLogin /> */}
-        {/* <AdminSignUp /> */}
-      </div>
-    );
-  }
-}
+      {showLogin ? (
+        <Login />
+      ) : showSignUp ? (
+        <SignUp />
+      ) : (
+        <Landing isLoggedIn={isLoggedIn} moviesImages={moviesImages} />
+      )}
+      {/* <Login /> */}
+      {/* <SignUp /> */}
+      {/* <CarouselSlider /> */}
+      {/* <AdminLogin />
+      <AdminSignUp /> */}
+    </div>
+  );
+};
+
+export default App;

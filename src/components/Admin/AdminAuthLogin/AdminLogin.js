@@ -1,44 +1,36 @@
-import React, { Component } from "react";
-import "./AdminLogin.css";
+import React, { useState } from "react";
+import "./adminLogin.css";
 import axios from "axios";
 
-export default class AdminLogin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      error: "",
-    };
-  }
+const AdminLogin = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  setData = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+  const setEmailOnChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  login = async () => {
+  const setPasswordOnChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const login = async () => {
     try {
-      this.setState({ error: "" });
-      const { email, password } = this.state;
+      setError("");
       if (email && password) {
         const res = await axios.post(
           "http://localhost:2323/api/v1/admin/login",
           {
-            email: this.state.email,
-            password: this.state.password,
+            email: email,
+            password: password,
           }
         );
         console.log(res);
         if (res.data.success) {
-          this.setState({
-            error: "Admin logged in",
-          });
+          setError("Admin logged in");
         } else {
-          this.setState({
-            error: res.data.message,
-          });
+          setError(res.data.message);
         }
       }
     } catch (error) {
@@ -46,60 +38,52 @@ export default class AdminLogin extends Component {
       if (error) {
         if (error.response) {
           if (!error.response.data.success) {
-            this.setState({
-              error: error.response.data.message,
-            });
+            setError(error.response.data.message);
           }
         }
       }
     }
-
-    // const { email, password } = this.state;
-    // const res = bootstrap.users.login(email, password);
   };
-  render() {
-    return (
-      <form className="adminLogin">
-        {/* <fieldset> */}
-
-        <div className="adminLoginFormContent">
-          <div className="adminLoginFormTitle">
-            <h1 className="adminLogintitle">Admin Login</h1>
-          </div>
-          <div className="adminLoginInputfield">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              onChange={this.setData}
-              required
-            />
-          </div>
-          <br />
-          <div className="adminLoginInputfield">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              onChange={this.setData}
-              required
-            />
-          </div>
-          <br />
-          <div className="adminLoginSubmitDiv">
-            <input
-              id="submitButton"
-              type="button"
-              value="Login"
-              onClick={this.login}
-            />
-          </div>
-          <div>{this.state.error}</div>
+  return (
+    <form className="adminLogin">
+      <div className="adminLoginFormContent">
+        <div className="adminLoginFormTitle">
+          <h1 className="adminLogintitle">Admin Login</h1>
         </div>
-        {/* </fieldset> */}
-      </form>
-    );
-  }
-}
+        <div className="adminLoginInputfield">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            onChange={setEmailOnChange}
+            required
+          />
+        </div>
+        <br />
+        <div className="adminLoginInputfield">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            onChange={setPasswordOnChange}
+            required
+          />
+        </div>
+        <br />
+        <div className="adminLoginSubmitDiv">
+          <input
+            id="submitButton"
+            type="button"
+            value="Login"
+            onClick={login}
+          />
+        </div>
+        <div>{error}</div>
+      </div>
+    </form>
+  );
+};
+
+export default AdminLogin;

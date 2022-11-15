@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useCheckCurrentUser from "../CustomHooks/useCheckCurrentUser";
 // import Header from "../Header/header";
-import "./login.css";
+import "./Login.css";
 // import bootstrap from "../../bootstrapData";
 import axios from "axios";
 
@@ -16,6 +17,11 @@ export default function Login() {
   const setPasswordOnChange = (e) => {
     setPassword(e.target.value);
   };
+
+  const currentUserDetails = useCheckCurrentUser(
+    "http://localhost:2323/api/v1/user/currentUser"
+  );
+  console.log(currentUserDetails);
 
   const login = async () => {
     try {

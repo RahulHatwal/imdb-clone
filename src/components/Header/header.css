@@ -1,32 +1,28 @@
 .imdb-header {
-  /* margin: 20px 50px 20px 50px; */
   text-align: center;
   padding: 10px;
   background-color: #121212;
-  /* overflow: auto; */
+
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  margin-bottom: 10px;
 }
 
 .logo {
-  /* float: left;
-  width: 30%; */
-
   align-self: center;
-  /* padding-left: 15px; */
 }
 
 #logo-img {
   height: 33px;
-  /* float: left; */
   cursor: pointer;
 }
 
 .title {
   align-self: center;
   color: white;
-  /* float: left; */
+
   width: 40%;
   font-weight: bold;
   font-size: x-large;
@@ -37,10 +33,8 @@
   align-self: center;
   display: flex;
   justify-content: space-between;
-  /* height: 30%; */
   padding: 10px;
   float: right;
-  /* margin-left: 8px; */
 
   border: none;
   text-decoration: none;
@@ -54,3 +48,48 @@
 .headerButtons:hover {
   background-color: grey;
 }
+
+/* .imdb-header {
+  text-align: center;
+  overflow: auto;
+}
+#logo {
+  float: left;
+  width: 33%;
+}
+#title {
+  float: left;
+  width: 30%;
+  font-size: xx-large;
+  color: white;
+  margin: 15px;
+  font-weight: bolder;
+}
+
+#button {
+  float: right;
+  width: 30%;
+  height: 70%;
+}
+
+#imdb-logo {
+  margin: 10px;
+  height: 40px;
+  float: left;
+}
+
+.header-buttons {
+  margin: 10px;
+  float: right;
+  padding: 12px;
+  font-weight: bolder;
+  border-radius: 6px;
+  height: 45px;
+  background-color: black;
+  color: white;
+}
+
+input[type="button"]:hover {
+  background-color: rgb(48, 46, 46);
+  cursor: pointer;
+} */

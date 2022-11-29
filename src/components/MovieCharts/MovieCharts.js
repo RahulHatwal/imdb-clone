@@ -2,19 +2,22 @@ import React from "react";
 import "./MovieCharts.css";
 import bootstrap from "../../bootstrapData";
 import { BsFillStarFill, BsFillBookmarkPlusFill } from "react-icons/bs";
-import RatingModal from "./RatingModal";
-import MovieFilter from "./MovieFilter";
+import RatingModal from "../RatingModal/RatingModal";
+import MovieFilter from "../MovieFilterNav/MovieFilter";
 import Table from "react-bootstrap/Table";
+import { Link } from "react-router-dom";
+import useGetMovies from "../../hooks/useGetMovies";
 
 export default function MovieCharts() {
+  const movies = useGetMovies();
+  console.log(movies);
   console.log(bootstrap.movies.list);
   const topMoviesList = bootstrap.movies.list;
+
   return (
     <div id="main">
       <div className="imdb-movie-charts">
-
         <div className="article">
-
           <h3>IMDb Charts</h3>
           <h1 className="header">IMDb top Movies</h1>
           <div class="byline">
@@ -43,16 +46,26 @@ export default function MovieCharts() {
                       </td>
                       <td className="titleColumn align-middle">
                         {`${movie.rank}. `}
-                        <a href="#">{`${movie.name} `}</a>({movie.year})
+                        <Link
+                          to={`/movie/${movie.id}`}
+                          state={{ movie: movie }}
+                        >{`${movie.name} `}</Link>
+                        ({movie.year})
                       </td>
                       <td className="ratingColumn imdbRating align-middle">
                         <h6>
-                          <BsFillStarFill /> {movie.rating}
+                          <BsFillStarFill color="golden" /> {movie.rating}
                         </h6>
                       </td>
                       <td className="ratingColumn align-middle">
                         <h6>
-                          <RatingModal movie={movie} />
+                          <RatingModal
+                            movie={movie}
+                            starSize={22}
+                            modalStarSize={30}
+                            starColor={"orange"}
+                            text="Rate this"
+                          />
                         </h6>
                       </td>
 
@@ -65,9 +78,7 @@ export default function MovieCharts() {
               </tbody>
             </Table>
           </div>
-
         </div>
-        
       </div>
     </div>
     // <div className="movie-charts">

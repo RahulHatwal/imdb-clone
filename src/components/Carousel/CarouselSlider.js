@@ -1,10 +1,12 @@
 import Carousel from "react-bootstrap/Carousel";
-import { moviesImages } from "../../LandingData/LandingData";
+import { moviesImages } from "../LandingData/LandingData";
+
+import "./CarouselSlider.css";
 
 function CarouselSlider() {
   return (
-    <div className="d-block w-50 center mx-auto">
-      <Carousel>
+    <div className="d-block center mx-auto carouselContainer">
+      {/* <Carousel dark wrap fade>
         <Carousel.Item interval={3000}>
           <img
             className="d-block w-100 carousel-img"
@@ -28,23 +30,19 @@ function CarouselSlider() {
             alt="Third slide"
           />
         </Carousel.Item>
-      </Carousel>
+      </Carousel> */}
 
       {/* Map not working on carousel */}
 
-      {/* <Carousel fade>
+      <Carousel fade wrap>
         {moviesImages.map((movie) => {
           return (
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={moviesImages.Url}
-                alt={moviesImages.Name}
-              />
+              <img className="d-block w-100" src={movie.Url} alt={movie.Name} />
             </Carousel.Item>
           );
         })}
-      </Carousel> */}
+      </Carousel>
     </div>
   );
 }

@@ -1,0 +1,71 @@
+.movieInfoContainer {
+  color: rgb(255, 255, 255);
+  background-color: #1f1f1f;
+  height: auto;
+  width: 80%;
+  padding: 25px;
+  margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movieHeader {
+  display: flex;
+}
+
+.movieTitleCol {
+  width: 60%;
+}
+
+.movieRatingCol {
+  width: 20%;
+}
+
+.yourRatingCol {
+  width: 20%;
+}
+
+.ratingBlock {
+  display: flex;
+  align-items: center;
+}
+
+.ratingBlock h4 {
+  margin-left: 10px;
+  font-size: 1.4em;
+}
+
+.movieHeader div {
+  margin-right: 20px;
+}
+
+.movieCoverImg {
+  object-fit: cover;
+  margin-top: 30px;
+  display: flex;
+}
+
+.movieCover {
+  width: 100%;
+  height: auto;
+}
+
+.moviePoster {
+  object-fit: cover;
+  position: absolute;
+}
+
+.storylineContainer {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.orangeBorder {
+  border-left: solid 3px orange;
+  padding-left: 10px;
+  font-size: 30px;
+}
+
+.storylineBody {
+  margin-top: 20px;
+}

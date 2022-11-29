@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./adminLogin.css";
 import axios from "axios";
+import useCheckAdmin from "../../../hooks/useCheckAdmin";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -29,6 +30,14 @@ const AdminLogin = () => {
         console.log(res);
         if (res.data.success) {
           setError("Admin logged in");
+          setEmail("");
+          setPassword("");
+          const token = res.data.token;
+          localStorage.setItem("token", token);
+          localStorage.setItem("role", "admin");
+          // setToken(token);
+          // setRole("admin");
+          window.location.replace("/admin/addmovies");
         } else {
           setError(res.data.message);
         }

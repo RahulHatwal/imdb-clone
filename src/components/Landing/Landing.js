@@ -1,7 +1,7 @@
 import React from "react";
 import "./Landing.css";
-import Carousel from "./ReactUsestateCarousel/Carousel";
-import CarouselSlider from "./Carousel/CarouselSlider";
+import Carousel from "../ReactUsestateCarousel/Carousel";
+import CarouselSlider from "../Carousel/CarouselSlider";
 import { LandingInfo } from "./LandingInfo/LandingInfo";
 import { landingInfoData } from "../LandingData/LandingData";
 

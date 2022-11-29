@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./signUp.css";
+import "./SignUp.css";
 import bootstrap from "../../bootstrapData";
 import axios from "axios";
 import { BsCheckSquare, BsFillExclamationCircleFill } from "react-icons/bs";
@@ -30,12 +30,20 @@ export default function SignUp(props) {
             setMessage("valid");
             setValid(true);
           } else {
-            setMessage("User Already Exists");
+            setMessage("Not Valid");
           }
           console.log(res, email, message, res.data.message);
         }
       } catch (err) {
-        console.log(err.response.data.message);
+        console.log(err);
+        if (err) {
+          if (err.response) {
+            if (!err.response.data.success) {
+              console.log(err.response.data.message);
+              setMessage(err.response.data.message);
+            }
+          }
+        }
       }
     };
     emailValidation();
@@ -157,10 +165,20 @@ export default function SignUp(props) {
             name="email"
             onChange={setEmailOnChange}
             required
-          />{" "}
-          {valid ? <BsCheckSquare /> : ""}
+          />
         </div>
-        <div>{message}</div>
+        <div>
+          {email.length > 0 ? (
+            valid ? (
+              <BsCheckSquare color="green" />
+            ) : (
+              <BsFillExclamationCircleFill color="red" />
+            )
+          ) : (
+            ""
+          )}{" "}
+          {message}
+        </div>
         <br />
         <div className="signupInput">
           <label for="password">Password</label>

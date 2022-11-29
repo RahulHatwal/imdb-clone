@@ -44,6 +44,10 @@ label {
   background-color: black;
 }
 
+.errorNameMsg {
+  color: white;
+}
+
 /* .form-group {
   display: flex;
   justify-content: space-between;

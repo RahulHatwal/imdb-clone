@@ -1,10 +1,9 @@
-.imdb-clone {
+.App {
   /* text-align: center;
   line-height: 1.15; */
   box-sizing: border-box;
   position: static;
-  width: auto;
-  margin: auto;
+  background-color: black !important;
 }
 
 /* .App-logo {

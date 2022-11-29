@@ -1,97 +1,120 @@
 // import logo from "./logo.svg";
 import "./App.css";
-import Header from "./components/Header/Header";
-import Landing from "./components/Landing/Landing";
 import { moviesImages } from "./components/LandingData/LandingData";
-// import CarouselSlider from "./components/Landing/CarouselSlider";
-
 import "bootstrap/dist/css/bootstrap.min.css";
+import data from "./bootstrapData";
+import React, { useState, useEffect } from "react";
+import {
+  Login,
+  SignUp,
+  MovieCharts,
+  Landing,
+  AdminLogin,
+  AdminSignup,
+  AddMovies,
+  UpdateMovies,
+} from "./components/";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Base } from "./Layout/Base";
+import MovieInfo from "./components/MovieDetailsPage/MovieInfo";
+import useCheckCurrentUser from "./hooks/useCheckCurrentUser";
+import useCheckAdmin from "./hooks/useCheckAdmin";
+import { ProtectedLayout } from "./Layout/ProtectedLayout";
+import MovieCard from "./components/Movies/Movies";
 
-import React, { Component } from "react";
-import Login from "./components/LogIn/Login";
-import SignUp from "./components/SignUp/SignUp";
+const App = () => {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [showLogin, setShowLogin] = useState(false);
+  // const [showSignUp, setShowSignUp] = useState(false);
 
-// import Login from "./components/Admin/AdminAuthLogin/AdminLogin";
-// import SignUp from "./components/Admin/AdminAuthSignUp/AdminSignUp";
-import AddMovies from "./components/Admin/AdminPage/AddMovies/AddMovies";
-import UpdateMovies from "./components/Admin/AdminPage/UpdateMovies/UpdateMovies";
-import MovieCharts from "./components/MovieCharts/MovieCharts";
+  // const showLoginForm = (e) => {
+  //   setShowLogin(true);
+  //   setShowSignUp(false);
+  // };
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoggedIn: false,
-      showLogin: false,
-      showSignUp: false,
-    };
-    console.log(this.state);
-  }
+  // const showSignupForm = (e) => {
+  //   setShowLogin(false);
+  //   setShowSignUp(true);
+  // };
 
-  showLoginForm = (e) => {
-    this.setState({
-      showLogin: true,
-      showSignUp: false,
-    });
-  };
-
-  showSignupForm = (e) => {
-    this.setState({
-      showSignUp: true,
-      showLogin: false,
-    });
-  };
-
-  showLanding = (e) => {
-    this.setState({
-      showSignUp: false,
-      showLogin: false,
-    });
-  };
+  // const showLanding = (e) => {
+  //   setShowLogin(false);
+  //   setShowSignUp(false);
+  // };
 
   // use getDerivedStateFromProps to check if props.isLoggedIn is true
-  static getDerivedStateFromProps(props, state) {
-    return {
-      ...state,
-      isLoggedIn: localStorage.token ? true : false,
-    };
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   return {
+  //     ...state,
+  //     isLoggedIn: localStorage.token ? true : false,
+  //   };
+  // }
+
+  // useEffect(() => {
+  //   setIsLoggedIn(localStorage.token ? true : false);
+  //   console.log(isLoggedIn);
+  // }, [isLoggedIn]);
 
   // If true state.isLoggedIn should also be true
 
-  render() {
-    return (
-      <div className="imdb-clone">
-        {/* <Header /> */}
-        {/* In  app.js*/}
-        {/* <MovieCharts /> */}
-        {/* <AddMovies /> */}
-        {/* <UpdateMovies /> */}
-        {console.log(this.state)}
+  // const navigate = useNavigate();
 
-        <Header
-          isLoggedIn={this.state.isLoggedIn}
-          onLoginClick={this.showLoginForm}
-          onSignupClick={this.showSignupForm}
-          onLogoClick={this.showLanding}
-        />
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          {/* Role - user */}
+          <Route path="/" element={<Base />}>
+            <Route index element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/topmovies" element={<MovieCharts />} />
+            <Route
+              path="/topmovies/:name"
+              element={<MovieInfo data={data} />}
+            />
+            <Route path="/movies" element={<MovieCard />} />
+          </Route>
 
-        {this.state.showLogin ? (
-          <Login />
-        ) : this.state.showSignUp ? (
-          <SignUp />
-        ) : (
-          <Landing
-            isLoggedIn={this.state.isLoggedIn}
-            moviesImages={moviesImages}
-          />
-        )}
-        {/* <Login /> */}
-        {/* <SignUp /> */}
-        {/* <CarouselSlider /> */}
-        {/* <AdminLogin /> */}
-        {/* <AdminSignUp /> */}
-      </div>
-    );
-  }
-}
+          {/* Role - admin */}
+          <Route path="/admin" element={<ProtectedLayout />}>
+            <Route path="login" element={<AdminLogin />} />
+            <Route path="signup" element={<AdminSignup />} />
+            <Route path="updatemovies" element={<UpdateMovies />} />
+            <Route path="addmovies" element={<AddMovies />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+
+    // <div className="imdb-clone">
+    //   {/* <Header /> */}
+    //   {/* In  app.js*/}
+    //   {/* <MovieCharts /> */}
+    //   {/* <AddMovies /> */}
+    //   {/* <UpdateMovies /> */}
+
+    //   <Header
+    //     isLoggedIn={isLoggedIn}
+    //     onLoginClick={showLoginForm}
+    //     onSignupClick={showSignupForm}
+    //     onLogoClick={showLanding}
+    //   />
+
+    //   {showLogin ? (
+    //     <Login />
+    //   ) : showSignUp ? (
+    //     <SignUp />
+    //   ) : (
+    //     <Landing isLoggedIn={isLoggedIn} moviesImages={moviesImages} />
+    //   )}
+    //   {/* <Login /> */}
+    //   {/* <SignUp /> */}
+    //   {/* <CarouselSlider /> */}
+    //   {/* <AdminLogin />
+    //   <AdminSignUp /> */}
+    // </div>
+  );
+};
+
+export default App;

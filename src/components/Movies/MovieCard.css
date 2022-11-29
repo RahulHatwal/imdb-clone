@@ -1,0 +1,119 @@
+.movie-card-container {
+  border-radius: 10px;
+  color: white;
+  width: 300px;
+  height: 610px;
+  /* padding: 20px; */
+  margin: 25px;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.movie-card-poster-overlay {
+  width: 300px;
+  height: 450px;
+  background: radial-gradient(
+    circle,
+    rgba(56, 68, 75, 0.1) 60%,
+    rgba(35, 43, 48, 0.7) 100%
+  );
+  /* background-color: #1a1a1a;
+  opacity: 0.2; */
+  position: absolute;
+  transition: 0.5s ease-out;
+}
+
+.movie-card-poster-overlay:hover {
+  width: 300px;
+  height: 450px;
+  /* background: radial-gradient(
+    circle,
+    rgba(56, 68, 75, 0.1) 40%,
+    rgba(35, 43, 48, 0.7) 100%
+  ); */
+  opacity: 0.1;
+  position: absolute;
+}
+
+.movie-card-poster {
+  width: 300px;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(black, 0.5);
+}
+.movie-card-poster > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movie-card-rating-container {
+  background-color: #0000002d;
+  color: #b5b7b2;
+  margin-top: 15px;
+  width: 270px;
+  display: flex;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.movie-card-rating-container > .movie-card-imdb-rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 55px;
+  margin-right: 20px;
+  font-size: 22px;
+}
+
+.movie-card-rating-container > .movie-card-your-rating {
+  /* margin-right: 90px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.movie-card-title {
+  color: whitesmoke;
+  margin-top: 10px;
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+.movie-card-yeargenre-row {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 270px;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* background-color: aqua; */
+}
+
+.movie-card-genre {
+  background-color: #0000002d;
+  padding: 5px;
+  color: black;
+  border-radius: 10px;
+  font-size: small;
+  font-weight: bold;
+  color: grey;
+  text-transform: capitalize;
+}
+
+.movie-card-year {
+  font-size: small;
+  font-weight: bold;
+  color: grey;
+}
+
+.movie-card-tags {
+  font-size: small;
+}

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { BsStar } from "react-icons/bs";
+import { BsStar, BsFillStarFill } from "react-icons/bs";
 import { Rating } from "react-simple-star-rating";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import "./RatingModal.css";
 
 export default function RatingModal(props) {
-  const { movie } = props;
+  const { movie, starSize, modalStarSize, starColor, text } = props;
   console.log(props);
   const [rating, setRating] = useState(0);
   // Catch Rating value
@@ -22,19 +23,27 @@ export default function RatingModal(props) {
   return (
     <>
       <div className="movieModal" onClick={handleShow}>
-        <BsStar /> {movie.yourRating}
+        <BsStar color={starColor} size={starSize} /> {movie.yourRating}
       </div>
 
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Rate this</Modal.Title>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        // dialogClassName="modal-60"
+        contentClassName="modal-container"
+        centered
+      >
+        <div className="rating-star-header">
+          <BsFillStarFill color="royalblue" size={90} />
+        </div>
+
+        <div className="rating-modal-text">{text}</div>
+        <Modal.Header>
+          <Modal.Title>{movie.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            <b>{movie.name}</b>
-          </p>
           <Rating
-            size={24}
+            size={modalStarSize}
             onClick={handleRating}
             initialValue={movie.yourRating}
             fillColorArray={[
@@ -50,7 +59,7 @@ export default function RatingModal(props) {
               "#f1de45",
             ]}
             iconsCount={10}
-            allowFraction
+            // allowFraction
             showTooltip
             tooltipArray={[
               "Terrible",

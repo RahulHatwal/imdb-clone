@@ -1,7 +1,7 @@
 export const moviesImages = [
   {
-    Name: "Batman",
-    Url: "https://areajugones.sport.es/wp-content/uploads/2022/04/the-batman-1.jpg",
+    Name: "The Shawshank Redemption",
+    Url: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/aa17005fd6e7eb3e15e32b9f9252e0aea07b50c7bd0bfe686ac45498fc6f809b._V_SX1080_.jpg",
   },
   {
     Name: "Harry Potter",
@@ -12,12 +12,12 @@ export const moviesImages = [
     Url: "https://webdevolutions.blob.core.windows.net/cms/lord_of_the_ring_trilogy_fc41c807b6.png",
   },
   {
-    Name: "Pan's Labyrinth",
-    Url: "https://cdn.cinemacloud.co.uk/imageFilm/705_1_1.jpg",
+    Name: "The Godfather",
+    Url: "https://c4.wallpaperflare.com/wallpaper/670/168/947/the-godfather-wallpaper-preview.jpg",
   },
   {
-    Name: "Her",
-    Url: "https://www.moviehdwallpapers.com/wp-content/uploads/2013/10/Her-2013-Love-Story-Movie.jpg",
+    Name: "The Dark Knight",
+    Url: "https://images.indianexpress.com/2019/08/the-dark-knight-759.jpg",
   },
 ];
 

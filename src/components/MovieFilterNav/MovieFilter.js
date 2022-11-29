@@ -1,6 +1,6 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
-import DropdownButton from "./DropdownButton";
+import DropdownButton from "../MovieCharts/DropdownButton";
 import "./MovieFilter.css";
 import { BsArrowUp, BsArrowDown } from "react-icons/bs";
 

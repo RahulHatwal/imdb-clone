@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useCheckCurrentUser from "../../hooks/useCheckCurrentUser";
 // import Header from "../Header/header";
-import "./login.css";
+import "./Login.css";
 // import bootstrap from "../../bootstrapData";
 import axios from "axios";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function Login() {
+  useEffect(() => {
+    localStorage.getItem("role") === "admin" &&
+      window.location.replace("/admin/addmovies");
+  }, []);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -16,6 +24,11 @@ export default function Login() {
   const setPasswordOnChange = (e) => {
     setPassword(e.target.value);
   };
+
+  const currentUserDetails = useCheckCurrentUser(
+    "http://localhost:2323/api/v1/user/currentUser"
+  );
+  console.log(currentUserDetails);
 
   const login = async () => {
     try {
@@ -39,6 +52,7 @@ export default function Login() {
           // set the token recieved from login respose to localstorage.token
           const token = res.data.token;
           localStorage.setItem("token", token);
+          localStorage.setItem("role", "user");
         } else {
           setError(res.data.message);
         }
@@ -59,41 +73,82 @@ export default function Login() {
     // const res = bootstrap.users.login(email, password);
   };
   return (
-    <form className="login">
-      <div className="loginformContent">
-        <div className="inputfield">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            onChange={setEmailOnChange}
-            required
-          />
-        </div>
-        <br />
-        <div className="inputfield">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={setPasswordOnChange}
-            required
-          />
-        </div>
-        <br />
-        <div className="submitDiv">
-          <input
-            id="submitButton"
-            type="button"
-            value="Login"
-            onClick={login}
-          />
-        </div>
+    // <form className="login">
+    //   <div className="loginformContent">
+    //     <div className="loginTitle">
+    //       <h2>Login</h2>
+    //     </div>
+    //     <div className="inputfield">
+    //       <label for="email">Email</label>
+    //       <input
+    //         type="email"
+    //         id="email"
+    //         name="email"
+    //         onChange={setEmailOnChange}
+    //         required
+    //       />
+    //     </div>
+    //     <br />
+    //     <div className="inputfield">
+    //       <label for="password">Password</label>
+    //       <input
+    //         type="password"
+    //         id="password"
+    //         name="password"
+    //         onChange={setPasswordOnChange}
+    //         required
+    //       />
+    //     </div>
+    //     <br />
+    //     <div className="submitDiv">
+    //       <input
+    //         id="submitButton"
+    //         type="button"
+    //         value="Login"
+    //         onClick={login}
+    //       />
+    //     </div>
 
-        <div>{error}</div>
+    //     <div>{error}</div>
+    //   </div>
+    // </form>
+    <div className="login_form">
+      <div className="login_form_container">
+        <div className="login_form_title">Login</div>
+        <Form dark>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              id="email"
+              name="email"
+              onChange={setEmailOnChange}
+              placeholder="Enter email"
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              id="password"
+              name="password"
+              onChange={setPasswordOnChange}
+              placeholder="Password"
+            />
+          </Form.Group>
+          {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Check me out" />
+          </Form.Group> */}
+          <Button variant="primary" onClick={login} type="button">
+            Submit
+          </Button>
+          <div>{error}</div>
+        </Form>
       </div>
-    </form>
+    </div>
   );
 }

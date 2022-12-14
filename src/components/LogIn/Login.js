@@ -7,12 +7,19 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import { useSelector, useDispatch } from "react-redux";
+import { LOGGED_IN, LOGGED_OUT } from "../../actions/user";
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.isLoggedIn);
   useEffect(() => {
     localStorage.getItem("role") === "admin" &&
       window.location.replace("/admin/addmovies");
   }, []);
-
+  console.log("user", user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -46,6 +53,8 @@ export default function Login() {
         console.log(res);
 
         if (res.data.success) {
+          console.log(res.data.user);
+
           setError("User Logged In");
           setEmail("");
           setPassword("");
@@ -53,6 +62,10 @@ export default function Login() {
           const token = res.data.token;
           localStorage.setItem("token", token);
           localStorage.setItem("role", "user");
+
+          // dispatch(LOGGED_IN({ ...res.data.user, token: token, role: "user" }));
+          dispatch(LOGGED_IN(res.data.user, token, "user"));
+          Navigate("/");
         } else {
           setError(res.data.message);
         }
@@ -149,6 +162,7 @@ export default function Login() {
           <div>{error}</div>
         </Form>
       </div>
+      <div style={{ color: "white" }}>{user}</div>
     </div>
   );
 }

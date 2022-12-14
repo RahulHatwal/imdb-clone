@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./adminLogin.css";
 import axios from "axios";
 import useCheckAdmin from "../../../hooks/useCheckAdmin";
+import { LOGGED_IN, LOGGED_OUT } from "../../../actions/user";
+import { useSelector, useDispatch } from "react-redux";
 
 const AdminLogin = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -35,9 +39,12 @@ const AdminLogin = () => {
           const token = res.data.token;
           localStorage.setItem("token", token);
           localStorage.setItem("role", "admin");
+          dispatch(
+            LOGGED_IN({ ...res.data.admin, token: token, role: "admin" })
+          );
           // setToken(token);
           // setRole("admin");
-          window.location.replace("/admin/addmovies");
+          // window.location.replace("/admin/addmovies");
         } else {
           setError(res.data.message);
         }

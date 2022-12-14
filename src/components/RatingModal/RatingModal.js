@@ -4,26 +4,51 @@ import { Rating } from "react-simple-star-rating";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "./RatingModal.css";
+import axios from "axios";
 
 export default function RatingModal(props) {
-  const { movie, starSize, modalStarSize, starColor, text } = props;
+  const { movie, starSize, modalStarSize, starColor, text, movieRating } =
+    props;
   console.log(props);
+  const token = localStorage.getItem("token");
   const [rating, setRating] = useState(0);
+  const [show, setShow] = useState(false);
   // Catch Rating value
   const handleRating = (rate) => {
     setRating(rate);
+    axios
+      .post(
+        "http://localhost:2323/api/v1/rating",
+        {
+          movieId: movie.id,
+          star: rating,
+        },
+        {
+          headers: {
+            authorization: `bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.message);
+      });
     console.log(rate);
   };
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = (e) => {
+    setShow(false);
+  };
+  const handleShow = () => {
+    console.log(movie.id);
+    setShow(true);
+  };
 
   return (
     <>
       <div className="movieModal" onClick={handleShow}>
-        <BsStar color={starColor} size={starSize} /> {movie.yourRating}
+        <BsStar color={starColor} size={starSize} />{" "}
+        <span className="movie-star-rating">{movieRating}</span>
       </div>
 
       <Modal
@@ -31,6 +56,7 @@ export default function RatingModal(props) {
         onHide={handleClose}
         // dialogClassName="modal-60"
         contentClassName="modal-container"
+        backdrop="fixed"
         centered
       >
         <div className="rating-star-header">
@@ -43,9 +69,9 @@ export default function RatingModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Rating
+            initialValue={parseInt(movieRating)}
             size={modalStarSize}
             onClick={handleRating}
-            initialValue={movie.yourRating}
             fillColorArray={[
               "#f14f45",
               "#f14f45",
@@ -77,11 +103,8 @@ export default function RatingModal(props) {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Rate
           </Button>
         </Modal.Footer>
       </Modal>

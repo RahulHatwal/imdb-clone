@@ -82,7 +82,7 @@
 .movie-card-title {
   color: whitesmoke;
   margin-top: 10px;
-  font-size: 2em;
+  font-size: 1.7em;
   text-transform: uppercase;
 }
 
@@ -116,4 +116,18 @@
 
 .movie-card-tags {
   font-size: small;
+}
+
+.delete-icon-overlay .deleteIcon {
+  width: 20px;
+  color: #1a1a1a3e;
+  opacity: 1;
+}
+
+.delete-icon-overlay {
+  display: flex;
+  justify-content: end;
+  position: absolute;
+  width: 20px;
+  opacity: 1;
 }

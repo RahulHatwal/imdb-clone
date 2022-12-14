@@ -55,6 +55,7 @@
 
 .rating-star-header {
   background-color: rgba(0, 255, 255, 0);
+  font-weight: bold;
   position: absolute;
   top: -50px;
 }
@@ -84,4 +85,29 @@
 
 .modal-header {
   border: none;
+}
+.modal-footer button {
+  background-color: #575757;
+  border: none;
+  width: 425px;
+}
+
+.modal-footer button:hover {
+  background-color: #f5c518;
+  font-weight: bold;
+  color: #1f1f1f;
+  border: none;
+  width: 425px;
+}
+
+.movieModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movieModal .movie-star-rating {
+  margin-left: 4px;
+  font-size: 20px;
+  color: #b0b7b0;
 }

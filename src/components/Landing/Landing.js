@@ -4,9 +4,12 @@ import Carousel from "../ReactUsestateCarousel/Carousel";
 import CarouselSlider from "../Carousel/CarouselSlider";
 import { LandingInfo } from "./LandingInfo/LandingInfo";
 import { landingInfoData } from "../LandingData/LandingData";
+import { useSelector, useDispatch } from "react-redux";
 
 //passing props
 export default function Landing({ isLoggedIn, moviesImages }) {
+  const user = useSelector((state) => state.user);
+  console.log(user);
   return (
     <>
       <div className="landingPage">

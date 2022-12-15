@@ -21,6 +21,7 @@ import useCheckCurrentUser from "./hooks/useCheckCurrentUser";
 import useCheckAdmin from "./hooks/useCheckAdmin";
 import { ProtectedLayout } from "./Layout/ProtectedLayout";
 import MovieCard from "./components/Movies/Movies";
+import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
 
 const App = () => {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -78,6 +79,7 @@ const App = () => {
 
           {/* Role - admin */}
           <Route path="/admin" element={<ProtectedLayout />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="login" element={<AdminLogin />} />
             <Route path="signup" element={<AdminSignup />} />
             <Route path="updatemovies" element={<UpdateMovies />} />

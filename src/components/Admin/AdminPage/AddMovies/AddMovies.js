@@ -4,6 +4,9 @@ import useCheckCurrentUser from "../../../../hooks/useCheckCurrentUser";
 import "./AddMovies.css";
 import axios from "axios";
 import { BsFillPrinterFill } from "react-icons/bs";
+import { useSelector, useDispatch } from "react-redux";
+import { uploadPoster } from "../../../../actions/uploadPosterActions";
+import { addMovie } from "../../../../actions/movieCrudAction";
 
 export default function AddMovies(props) {
   const [name, setName] = useState("");
@@ -11,123 +14,130 @@ export default function AddMovies(props) {
   const [year, setYear] = useState("");
   const [genre, setGenre] = useState("");
   const [tags, setTags] = useState("");
-  const [error, setError] = useState("");
-  const [poster, setPoster] = useState();
-  const currentAdmin = useCheckAdmin(
-    "http://localhost:2323/api/v1/admin/currentAdmin"
-  );
-  const token = localStorage.getItem("token");
 
-  const addMovieOnClick = async (e) => {
-    try {
-      setError("");
-      console.log(name, year, genre, tags, poster);
-      if (name && year && tags && genre && poster) {
-        // api request
-        const res = await axios.post(
-          "http://localhost:2323/api/v1/movie",
-          {
-            name: name,
-            genre: genre,
-            tags: tags,
-            poster: poster,
-            year: year,
-          },
-          {
-            headers: {
-              authorization: `bearer ${token}`,
-            },
-          }
-        );
+  const dispatch = useDispatch();
+  const posterState = useSelector((state) => state.uploadPoster);
+  // const currentAdmin = useCheckAdmin(
+  //   "http://localhost:2323/api/v1/admin/currentAdmin"
+  // );
+  // const token = localStorage.getItem("token");
 
-        console.log(res);
-        if (res.data.success) {
-          setError(res.data.message);
-        } else {
-          setError(res.data.message);
-        }
-        // if (res) {
-        //   if (res.data) {
-        //     if (res.data.success) {
-        //       setError(res.data.message);
-        //       // set the token recieved from login respose to localstorage.token
-        //     }
-        //   }
-        // } else {
-        //   setError(res.data.message);
-        //   console.log("Hello");
-        // }
-        setGenre("");
-        setName("");
-        setPoster("");
-        setYear("");
-      }
-    } catch (err) {
-      console.log(err);
-      if (err) {
-        if (err.response) {
-          if (!err.response.data.success) {
-            console.log(err.response.data.message);
-            setError(err.response.data.message);
-          }
-        }
-      }
-    }
+  // const addMovieOnClick = async (e) => {
+  //   try {
+  //     setError("");
+  //     console.log(name, year, genre, tags, poster);
+  //     if (name && year && tags && genre && poster) {
+  //       // api request
+  //       const res = await axios.post(
+  //         "http://localhost:2323/api/v1/movie",
+  //         {
+  //           name: name,
+  //           genre: genre,
+  //           tags: tags,
+  //           poster: poster,
+  //           year: year,
+  //         },
+  //         {
+  //           headers: {
+  //             authorization: `bearer ${token}`,
+  //           },
+  //         }
+  //       );
 
-    // const { email, password } = this.state;
-    // const res = bootstrap.users.login(email, password);
-  };
+  //       console.log(res);
+  //       if (res.data.success) {
+  //         setError(res.data.message);
+  //       } else {
+  //         setError(res.data.message);
+  //       }
+  //       // if (res) {
+  //       //   if (res.data) {
+  //       //     if (res.data.success) {
+  //       //       setError(res.data.message);
+  //       //       // set the token recieved from login respose to localstorage.token
+  //       //     }
+  //       //   }
+  //       // } else {
+  //       //   setError(res.data.message);
+  //       //   console.log("Hello");
+  //       // }
+  //       setGenre("");
+  //       setName("");
+  //       setPoster("");
+  //       setYear("");
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     if (err) {
+  //       if (err.response) {
+  //         if (!err.response.data.success) {
+  //           console.log(err.response.data.message);
+  //           setError(err.response.data.message);
+  //         }
+  //       }
+  //     }
+  //   }
+
+  // const { email, password } = this.state;
+  // const res = bootstrap.users.login(email, password);
+  // };
+
+  // const uploadPoster = async (e) => {
+  //   try {
+  //     setError("");
+  //     console.log("Upload api is called");
+  //     if (e) {
+  //       // api request
+  //       const formData = new FormData();
+  //       formData.append("upload", e.target.files[0]);
+  //       const res = await axios.post(
+  //         "http://localhost:2323/api/v1/upload",
+  //         formData,
+  //         {
+  //           headers: {
+  //             authorization: `bearer ${token}`,
+  //           },
+  //         }
+  //       );
+  //       console.log(res.data.upload.id);
+  //       if (res.data.success) {
+  //         setError(res.data.message);
+  //         setPoster(res.data.upload.id);
+  //       } else {
+  //         setError(res.data.message);
+  //       }
+  //       // if (res) {
+  //       //   if (res.data) {
+  //       //     if (res.data.success) {
+  //       //       setError(res.data.message);
+  //       //       // set the token recieved from login respose to localstorage.token
+  //       //     }
+  //       //   }
+  //       // } else {
+  //       //   setError(res.data.message);
+  //       //   console.log("Hello");
+  //       // }
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     if (err) {
+  //       if (err.response) {
+  //         if (!err.response.data.success) {
+  //           console.log(err.response.data.message);
+  //           setError(err.response.data.message);
+  //         }
+  //       }
+  //     }
+  //   }
+
+  //   // const { email, password } = this.state;
+  //   // const res = bootstrap.users.login(email, password);
+  // };
 
   const uploadPoster = async (e) => {
-    try {
-      setError("");
-      console.log("Upload api is called");
-      if (e) {
-        // api request
-        const formData = new FormData();
-        formData.append("upload", e.target.files[0]);
-        const res = await axios.post(
-          "http://localhost:2323/api/v1/upload",
-          formData,
-          {
-            headers: {
-              authorization: `bearer ${token}`,
-            },
-          }
-        );
-        console.log(res.data.upload.id);
-        if (res.data.success) {
-          setError(res.data.message);
-          setPoster(res.data.upload.id);
-        } else {
-          setError(res.data.message);
-        }
-        // if (res) {
-        //   if (res.data) {
-        //     if (res.data.success) {
-        //       setError(res.data.message);
-        //       // set the token recieved from login respose to localstorage.token
-        //     }
-        //   }
-        // } else {
-        //   setError(res.data.message);
-        //   console.log("Hello");
-        // }
-      }
-    } catch (err) {
-      console.log(err);
-      if (err) {
-        if (err.response) {
-          if (!err.response.data.success) {
-            console.log(err.response.data.message);
-            setError(err.response.data.message);
-          }
-        }
-      }
-    }
-
-    // const { email, password } = this.state;
-    // const res = bootstrap.users.login(email, password);
+    const formData = new FormData();
+    formData.append("upload", e.target.files[0]);
+    dispatch(uploadPoster(formData));
   };
 
   return (
@@ -202,12 +212,14 @@ export default function AddMovies(props) {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={addMovieOnClick}
+              onClick={() =>
+                dispatch(addMovie({ name, genre, tags, posterState, year }))
+              }
             >
               Add
             </button>
           </div>
-          <div className="errorNameMsg">{error}</div>
+          <div className="errorNameMsg">{}</div>
         </div>
       </form>
     </div>

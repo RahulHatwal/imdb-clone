@@ -4,14 +4,23 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import {thunk} from "redux-thunk"
 // import { combineReducers, legacy_createStore as createStore, applyMiddleware } from "redux";
 import userReducer from "./reducers/userReducer";
-
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import authReducer from "./reducers/authReducer";
+import MovieCard from "./MovieCard";
+import movieCrudReducer from "./reducers/movieCrudReducer";
+import fetchMovieReducer from "./reducers/fetchMovieReducer";
+import uploadPosterReducer from "./reducers/uploadPosterReducer";
+import signupReducer from "./reducers/signupReducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
+  auth: authReducer,
+  movieCrud: movieCrudReducer,
+  fetchMovies: fetchMovieReducer,
+  uploadPoster: uploadPosterReducer,
+  signup: signupReducer,
 });
 
 const store = configureStore({
@@ -27,7 +36,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App isLoggedIn={true} />
+      <App />
     </Provider>
   </React.StrictMode>
 );

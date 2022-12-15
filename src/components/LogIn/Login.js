@@ -9,20 +9,24 @@ import Button from "react-bootstrap/Button";
 
 import { useSelector, useDispatch } from "react-redux";
 import { LOGGED_IN, LOGGED_OUT } from "../../actions/user";
+import { login } from "../../actions/authActions";
+
 import { useNavigate } from "react-router-dom";
+import { fetchMovies } from "../../actions/fetchMovieActions";
 
 export default function Login() {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.isLoggedIn);
+  const state = useSelector((state) => state.auth);
   useEffect(() => {
-    localStorage.getItem("role") === "admin" &&
-      window.location.replace("/admin/addmovies");
+    // localStorage.getItem("role") === "admin" &&
+    //   window.location.replace("/admin/addmovies");
+    dispatch(fetchMovies());
   }, []);
-  console.log("user", user);
+  console.log("state", state);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const setEmailOnChange = (e) => {
     setEmail(e.target.value);
@@ -32,59 +36,59 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  const currentUserDetails = useCheckCurrentUser(
-    "http://localhost:2323/api/v1/user/currentUser"
-  );
-  console.log(currentUserDetails);
+  // const currentUserDetails = useCheckCurrentUser(
+  //   "http://localhost:2323/api/v1/user/currentUser"
+  // );
+  // console.log(currentUserDetails);
 
-  const login = async () => {
-    try {
-      setError("");
-      if (email && password) {
-        // api request
-        const res = await axios.post(
-          "http://localhost:2323/api/v1/user/login",
-          {
-            email: email,
-            password: password,
-          }
-        );
+  // const login = async () => {
+  //   try {
+  //     setError("");
+  //     if (email && password) {
+  //       // api request
+  //       const res = await axios.post(
+  //         "http://localhost:2323/api/v1/user/login",
+  //         {
+  //           email: email,
+  //           password: password,
+  //         }
+  //       );
 
-        console.log(res);
+  //       console.log(res);
 
-        if (res.data.success) {
-          console.log(res.data.user);
+  //       if (res.data.success) {
+  //         console.log(res.data.user);
 
-          setError("User Logged In");
-          setEmail("");
-          setPassword("");
-          // set the token recieved from login respose to localstorage.token
-          const token = res.data.token;
-          localStorage.setItem("token", token);
-          localStorage.setItem("role", "user");
+  //         setError("User Logged In");
+  //         setEmail("");
+  //         setPassword("");
+  //         // set the token recieved from login respose to localstorage.token
+  //         const token = res.data.token;
+  //         localStorage.setItem("token", token);
+  //         localStorage.setItem("role", "user");
 
-          // dispatch(LOGGED_IN({ ...res.data.user, token: token, role: "user" }));
-          dispatch(LOGGED_IN(res.data.user, token, "user"));
-          Navigate("/");
-        } else {
-          setError(res.data.message);
-        }
-      }
-    } catch (err) {
-      console.log(err);
-      if (err) {
-        if (err.response) {
-          if (!err.response.data.success) {
-            console.log(err.response.data.message);
-            setError(err.response.data.message);
-          }
-        }
-      }
-    }
+  //         // dispatch(LOGGED_IN({ ...res.data.user, token: token, role: "user" }));
+  //         dispatch(LOGGED_IN(res.data.user, token, "user"));
+  //         Navigate("/");
+  //       } else {
+  //         setError(res.data.message);
+  //       }
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     if (err) {
+  //       if (err.response) {
+  //         if (!err.response.data.success) {
+  //           console.log(err.response.data.message);
+  //           setError(err.response.data.message);
+  //         }
+  //       }
+  //     }
+  //   }
 
-    // const { email, password } = this.state;
-    // const res = bootstrap.users.login(email, password);
-  };
+  //   // const { email, password } = this.state;
+  //   // const res = bootstrap.users.login(email, password);
+  // };
   return (
     // <form className="login">
     //   <div className="loginformContent">
@@ -156,13 +160,25 @@ export default function Login() {
           {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Check me out" />
           </Form.Group> */}
-          <Button variant="primary" onClick={login} type="button">
+          <Button
+            variant="primary"
+            onClick={(e) =>
+              dispatch(
+                login(
+                  email,
+                  password,
+                  "http://localhost:2323/api/v1/user/login",
+                  "user"
+                )
+              )
+            }
+            type="button"
+          >
             Submit
           </Button>
-          <div>{error}</div>
+          {/* <div>{error}</div> */}
         </Form>
       </div>
-      <div style={{ color: "white" }}>{user}</div>
     </div>
   );
 }

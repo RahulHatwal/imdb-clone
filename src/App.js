@@ -1,7 +1,9 @@
 // import logo from "./logo.svg";
-import "./App.css";
+//import "./App.css";
+import "./App.scss";
+
 import { moviesImages } from "./components/LandingData/LandingData";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import data from "./bootstrapData";
 import React, { useState, useEffect } from "react";
 import {
@@ -19,56 +21,28 @@ import { Base } from "./Layout/Base";
 import MovieInfo from "./components/MovieDetailsPage/MovieInfo";
 import useCheckCurrentUser from "./hooks/useCheckCurrentUser";
 import useCheckAdmin from "./hooks/useCheckAdmin";
-import { ProtectedLayout } from "./Layout/ProtectedLayout";
+import { Admin } from "./Layout/Admin";
 import MovieCard from "./components/Movies/Movies";
 import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
+import LoginSignupLayout from "./Layout/LoginSignupLayout";
+import Spinner from "../src/LoaderSpinner/Spinner";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMovies } from "./actions/fetchMovieActions";
 
 const App = () => {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [showLogin, setShowLogin] = useState(false);
-  // const [showSignUp, setShowSignUp] = useState(false);
-
-  // const showLoginForm = (e) => {
-  //   setShowLogin(true);
-  //   setShowSignUp(false);
-  // };
-
-  // const showSignupForm = (e) => {
-  //   setShowLogin(false);
-  //   setShowSignUp(true);
-  // };
-
-  // const showLanding = (e) => {
-  //   setShowLogin(false);
-  //   setShowSignUp(false);
-  // };
-
-  // use getDerivedStateFromProps to check if props.isLoggedIn is true
-  // static getDerivedStateFromProps(props, state) {
-  //   return {
-  //     ...state,
-  //     isLoggedIn: localStorage.token ? true : false,
-  //   };
-  // }
-
-  // useEffect(() => {
-  //   setIsLoggedIn(localStorage.token ? true : false);
-  //   console.log(isLoggedIn);
-  // }, [isLoggedIn]);
-
-  // If true state.isLoggedIn should also be true
-
-  // const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, []);
+  const loadingState = useSelector((state) => state.loading);
   return (
     <div className="App">
+      {loadingState.loading ? <Spinner /> : null}
       <BrowserRouter>
         <Routes>
           {/* Role - user */}
           <Route path="/" element={<Base />}>
             <Route index element={<Landing />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
             <Route path="/topmovies" element={<MovieCharts />} />
             <Route
               path="/topmovies/:name"
@@ -76,9 +50,12 @@ const App = () => {
             />
             <Route path="/movies" element={<MovieCard />} />
           </Route>
-
+          <Route path="/user" element={<LoginSignupLayout />}>
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
+          </Route>
           {/* Role - admin */}
-          <Route path="/admin" element={<ProtectedLayout />}>
+          <Route path="/admin" element={<Admin />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="login" element={<AdminLogin />} />
             <Route path="signup" element={<AdminSignup />} />
@@ -88,34 +65,6 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </div>
-
-    // <div className="imdb-clone">
-    //   {/* <Header /> */}
-    //   {/* In  app.js*/}
-    //   {/* <MovieCharts /> */}
-    //   {/* <AddMovies /> */}
-    //   {/* <UpdateMovies /> */}
-
-    //   <Header
-    //     isLoggedIn={isLoggedIn}
-    //     onLoginClick={showLoginForm}
-    //     onSignupClick={showSignupForm}
-    //     onLogoClick={showLanding}
-    //   />
-
-    //   {showLogin ? (
-    //     <Login />
-    //   ) : showSignUp ? (
-    //     <SignUp />
-    //   ) : (
-    //     <Landing isLoggedIn={isLoggedIn} moviesImages={moviesImages} />
-    //   )}
-    //   {/* <Login /> */}
-    //   {/* <SignUp /> */}
-    //   {/* <CarouselSlider /> */}
-    //   {/* <AdminLogin />
-    //   <AdminSignUp /> */}
-    // </div>
   );
 };
 

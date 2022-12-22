@@ -1,0 +1,156 @@
+/* Customize the color palette to match IMDB's website */
+
+$primary: #f5c518;
+$secondary: #000000;
+$success: #00b359;
+$warning: #b35900;
+$dark: #1c1c1c;
+$light: #e6e6e6;
+$custom-light: #ffffff;
+$info: #00b8d4;
+$danger: #d32f2f;
+
+/* Add any additional custom styles here */
+body {
+  font-size: 16px;
+  /* Set the background color to IMDB's dark color */
+  background-color: $dark;
+  /* Set the font family to a sans-serif font */
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+/* Customize the appearance of the navbar */
+.navbar {
+  /* Use a gradient background color for the navbar */
+  background: linear-gradient(to right, $primary, $secondary);
+  /* Add a box shadow to the navbar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Customize the appearance of buttons */
+.btn {
+  /* Use IMDB's secondary color for the button background */
+  background-color: $primary;
+  /* Change the font color to IMDB's light color */
+  color: #2d281c;
+
+  /* Add a hover effect to buttons */
+  &:hover {
+    background-color: darken($primary, 10%);
+  }
+  /* Add a focus effect to buttons */
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($light, 0.5);
+  }
+}
+
+// .btn {
+//   background-image: linear-gradient(
+//     to right,
+//     #ff8008 0%,
+//     #ffc837 51%,
+//     #ff8008 100%
+//   );
+//   margin: 10px;
+//   padding: 15px 45px;
+//   text-align: center;
+//   text-transform: uppercase;
+//   transition: 0.5s;
+//   background-size: 200% auto;
+//   color: white;
+//   box-shadow: 0 0 20px #eee;
+//   border-radius: 10px;
+//   display: block;
+// }
+
+// .btn:hover {
+//   background-position: right center; /* change the direction of the change here */
+//   color: #fff;
+//   text-decoration: none;
+// }
+/* Customize the appearance of card components */
+.card {
+  /* Add a subtle shadow to cards */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Use IMDB's light color for the card background */
+  background-color: $light;
+  /* Use IMDB's dark color for the card text */
+  color: $dark;
+}
+
+/* Customize the appearance of form inputs */
+
+/* Customize the appearance of form inputs */
+input,
+form,
+select,
+textarea {
+  /* Add a border and border radius to form inputs */
+  border: 1px solid $primary;
+  border-radius: 5px;
+  /* Use IMDB's light color for the input background */
+  background-color: $light;
+  /* Use IMDB's dark color for the input text */
+  color: $dark;
+  /* Add some padding to the input */
+  padding: 10px;
+}
+
+/* Customize the appearance of form labels */
+label {
+  /* Use IMDB's dark color for the label text */
+  color: $dark;
+  /* Add some margin to the label */
+  margin-bottom: 10px;
+  /* Make the label font bold */
+  font-weight: bold;
+}
+
+/* Customize the appearance of form buttons */
+button[type="submit"] {
+  /* Use IMDB's primary color for the button background */
+  background-color: $primary;
+  /* Change the font color to IMDB's light color */
+  color: $dark;
+  /* Add some padding to the button */
+  padding: 10px 20px;
+  /* Add a border radius to the button */
+  border-radius: 5px;
+  /* Add a hover effect to the button */
+  &:hover {
+    background-color: darken($primary, 10%);
+  }
+}
+
+/* Customize the appearance of form error messages */
+.invalid-feedback {
+  /* Use IMDB's danger color for the error message text */
+  color: $danger;
+  /* Make the error message font bold */
+  font-weight: bold;
+}
+
+/* Customize the appearance of tables */
+table {
+  /* Use IMDB's light color for the table background */
+  background-color: $light;
+  /* Use IMDB's dark color for the table text */
+  color: $dark;
+  /* Add some padding to the table cells */
+  td,
+  th {
+    padding: 10px;
+  }
+}
+
+footer {
+  text-align: center;
+  color: $light;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  background-color: $dark;
+}
+
+/* Import Bootstrap and apply the customizations */
+@import "~bootstrap/scss/bootstrap.scss";

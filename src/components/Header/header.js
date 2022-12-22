@@ -44,7 +44,7 @@ const Header = (props) => {
           </div>
         ) : (
           <div id="buttons">
-            <Link to="/login">
+            <Link to="/user/login">
               <input
                 type="button"
                 name="login"
@@ -54,7 +54,7 @@ const Header = (props) => {
                 onClick={props.onLoginClick}
               />
             </Link>
-            <Link to="/signup">
+            <Link to="/user/signup">
               <input
                 type="button"
                 name="signup"

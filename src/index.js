@@ -13,6 +13,9 @@ import movieCrudReducer from "./reducers/movieCrudReducer";
 import fetchMovieReducer from "./reducers/fetchMovieReducer";
 import uploadPosterReducer from "./reducers/uploadPosterReducer";
 import signupReducer from "./reducers/signupReducer";
+import "./custom.scss";
+import loadingReducer from "./reducers/loadingReducer";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -21,6 +24,7 @@ const rootReducer = combineReducers({
   fetchMovies: fetchMovieReducer,
   uploadPoster: uploadPosterReducer,
   signup: signupReducer,
+  loading: loadingReducer,
 });
 
 const store = configureStore({

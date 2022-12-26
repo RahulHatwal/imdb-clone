@@ -1,4 +1,15 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { CgProfile } from "react-icons/cg";
+import { MdMonitor, MdStars, MdPeople } from "react-icons/md";
+import { BsCollectionPlay } from "react-icons/bs";
+import Navlink from "./Navlink";
+import "./Header.css";
 import {
   appName,
   logoUrl,
@@ -6,138 +17,105 @@ import {
   signup,
   logout,
 } from "../../helpers/constants.js";
-import "./Header.css";
-import { Link } from "react-router-dom";
 
 const Header = (props) => {
   console.log(props);
   const logoutHandle = () => {
     localStorage.clear();
   };
+
   return (
-    <div className="imdb-header">
-      <div className="logo">
-        <Link to="/">
-          {" "}
-          <img
-            id="logo-img"
-            src={logoUrl}
-            alt="IMDB Logo"
-            onClick={props.onLogoClick}
+    <Navbar collapseOnSelect expand="false" variant="dark">
+      <Container>
+        <Navbar.Brand className=" d-flex align-content-center">
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            style={{ marginRight: "25px" }}
           />
-        </Link>
-      </div>
-      <div className="title">{appName}</div>
-      <div className="buttons">
-        {localStorage.getItem("token") ? (
-          <div id="buttons">
-            <Link to="/">
-              <input
-                type="button"
-                name="logout"
-                value={logout}
-                id="logout"
-                className="headerButtons"
-                onClick={logoutHandle}
+          <Link className="text-decoration-none" to="/">
+            <img
+              width={"65px"}
+              src={logoUrl}
+              alt="IMDB Logo"
+              onClick={props.onLogoClick}
+            />
+            <span
+              className=" mx-2 text-uppercase text-primary align-bottom fs-4 p-1 rounded-3 "
+              style={{ backgroundColor: "black" }}
+            >
+              {appName}
+            </span>
+          </Link>
+        </Navbar.Brand>
+
+        <Navbar.Offcanvas
+          aria-labelledby="offcanvasNavbarLabel"
+          placement="start"
+          className=" bg-dark"
+        >
+          <Offcanvas.Header
+            closeButton
+            style={{ backgroundColor: "#121212" }}
+            closeVariant="white"
+            className=""
+          >
+            <Offcanvas.Title className=" text-primary text-uppercase  ">
+              <img
+                width={"65px"}
+                src={logoUrl}
+                alt="IMDB Logo"
+                onClick={props.onLogoClick}
               />
-            </Link>
-          </div>
-        ) : (
-          <div id="buttons">
-            <Link to="/login">
-              <input
-                type="button"
-                name="login"
-                id="loginButton"
-                value={login}
-                className="headerButtons"
-                onClick={props.onLoginClick}
-              />
-            </Link>
-            <Link to="/signup">
-              <input
-                type="button"
-                name="signup"
-                id="signupButton"
-                onClick={props.onSignupClick}
-                value={signup}
-                className="headerButtons"
-              />
-            </Link>
-          </div>
-        )}
-      </div>
-    </div>
+              <span
+                className=" mx-2 text-uppercase text-primary align-bottom fs-4 p-1 rounded-3 "
+                style={{ backgroundColor: "black" }}
+              >
+                {appName}
+              </span>
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body className=" mt-3">
+            <Nav>
+              <Navlink />
+              <Nav.Link
+                href="#"
+                className=" text-uppercase text-light fw-light"
+              >
+                <BsCollectionPlay size={22} color="#8e8e8e" />
+                &nbsp;&nbsp; Watch
+              </Nav.Link>
+
+              <Nav.Link
+                href="#"
+                className=" text-uppercase text-light fw-light"
+              >
+                <MdMonitor size={23} color="#8e8e8e" />
+                &nbsp;&nbsp; TV Shows
+              </Nav.Link>
+
+              <Nav.Link
+                href="#"
+                className=" text-uppercase text-light fw-light"
+              >
+                <MdStars size={23} color="#8e8e8e" />
+                &nbsp;&nbsp; Awards & Events
+              </Nav.Link>
+
+              <Nav.Link
+                href="#"
+                className=" text-uppercase text-light fw-light"
+              >
+                <MdPeople size={23} color="#8e8e8e" />
+                &nbsp;&nbsp; Celebs
+              </Nav.Link>
+            </Nav>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+
+        <Navlink className="justify-content-end flex-grow-1 pe-3 fs-5 " />
+      </Container>
+    </Navbar>
   );
 };
 
 export default Header;
-
-// import "./Header.css";
-
-// const Header = (props) => {
-//   return (
-//     <div>
-//       {!localStorage.getItem("token") ? (
-//         <div className="imdb-header">
-//           <div id="logo" onClick={props.onLogoClick}>
-//             <img
-//               id="imdb-logo"
-//               src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg"
-//               alt="IMDB LOGO"
-//               onClick={() => {
-//                 window.location.replace("/");
-//               }}
-//             />
-//           </div>
-//           <div id="title">IMDB Clone</div>
-//           <div id="button">
-//             <input
-//               type="button"
-//               name="signup"
-//               value="Signup"
-//               onClick={() => {
-//                 window.location.replace("/user/signup");
-//               }}
-//               className="header-buttons"
-//             />
-//             <input
-//               type="button"
-//               name="login"
-//               value="Login"
-//               className="header-buttons "
-//               onClick={() => {
-//                 window.location.replace("/user/login");
-//               }}
-//             />
-//           </div>
-//         </div>
-//       ) : (
-//         <div className="imdb-header">
-//           <div id="logo">
-//             <img
-//               id="imdb-logo"
-//               src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg"
-//               alt="IMDB LOGO"
-//             />
-//           </div>
-//           <div id="title">IMDB Clone</div>
-//           <div id="button">
-//             <input
-//               type="button"
-//               name="login"
-//               value="Log Out"
-//               className="header-buttons"
-//               onClick={() => {
-//                 localStorage.removeItem("token");
-//                 localStorage.removeItem("role");
-//                 window.location.reload();
-//               }}
-//             />
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-// export default Header;

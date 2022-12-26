@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from "react";
 import useCheckCurrentUser from "../../hooks/useCheckCurrentUser";
-// import Header from "../Header/header";
-import "./Login.css";
-// import bootstrap from "../../bootstrapData";
+
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import Nav from "react-bootstrap/Nav";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Toast from "react-bootstrap/Toast";
+import { Link, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { LOGGED_IN, LOGGED_OUT } from "../../actions/user";
 import { login } from "../../actions/authActions";
-
+import { BiUserCircle } from "react-icons/bi";
+import { RiAdminLine } from "react-icons/ri";
+import { HiOutlineKey } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { fetchMovies } from "../../actions/fetchMovieActions";
+import { setLoading, setLoaded } from "../../actions/loadingActions";
 
 export default function Login() {
-  const Navigate = useNavigate();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.auth);
-  useEffect(() => {
-    // localStorage.getItem("role") === "admin" &&
-    //   window.location.replace("/admin/addmovies");
-    dispatch(fetchMovies());
-  }, []);
-  console.log("state", state);
+  const Navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const loginState = useSelector((state) => state.auth);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
+
+  const [loginType, setLoginType] = useState("user");
 
   const setEmailOnChange = (e) => {
     setEmail(e.target.value);
@@ -36,149 +35,142 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  // const currentUserDetails = useCheckCurrentUser(
-  //   "http://localhost:2323/api/v1/user/currentUser"
-  // );
-  // console.log(currentUserDetails);
+  if (loginState.role === "admin" && loginState.isAuthenticated) {
+    setTimeout(() => {
+      Navigate("/admin/dashboard");
+    }, 2000);
+  }
+  if (loginState.role === "user" && loginState.isAuthenticated) {
+    setTimeout(() => {
+      Navigate("/");
+    }, 2000);
+  }
 
-  // const login = async () => {
-  //   try {
-  //     setError("");
-  //     if (email && password) {
-  //       // api request
-  //       const res = await axios.post(
-  //         "http://localhost:2323/api/v1/user/login",
-  //         {
-  //           email: email,
-  //           password: password,
-  //         }
-  //       );
-
-  //       console.log(res);
-
-  //       if (res.data.success) {
-  //         console.log(res.data.user);
-
-  //         setError("User Logged In");
-  //         setEmail("");
-  //         setPassword("");
-  //         // set the token recieved from login respose to localstorage.token
-  //         const token = res.data.token;
-  //         localStorage.setItem("token", token);
-  //         localStorage.setItem("role", "user");
-
-  //         // dispatch(LOGGED_IN({ ...res.data.user, token: token, role: "user" }));
-  //         dispatch(LOGGED_IN(res.data.user, token, "user"));
-  //         Navigate("/");
-  //       } else {
-  //         setError(res.data.message);
-  //       }
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //     if (err) {
-  //       if (err.response) {
-  //         if (!err.response.data.success) {
-  //           console.log(err.response.data.message);
-  //           setError(err.response.data.message);
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   // const { email, password } = this.state;
-  //   // const res = bootstrap.users.login(email, password);
-  // };
   return (
-    // <form className="login">
-    //   <div className="loginformContent">
-    //     <div className="loginTitle">
-    //       <h2>Login</h2>
-    //     </div>
-    //     <div className="inputfield">
-    //       <label for="email">Email</label>
-    //       <input
-    //         type="email"
-    //         id="email"
-    //         name="email"
-    //         onChange={setEmailOnChange}
-    //         required
-    //       />
-    //     </div>
-    //     <br />
-    //     <div className="inputfield">
-    //       <label for="password">Password</label>
-    //       <input
-    //         type="password"
-    //         id="password"
-    //         name="password"
-    //         onChange={setPasswordOnChange}
-    //         required
-    //       />
-    //     </div>
-    //     <br />
-    //     <div className="submitDiv">
-    //       <input
-    //         id="submitButton"
-    //         type="button"
-    //         value="Login"
-    //         onClick={login}
-    //       />
-    //     </div>
-
-    //     <div>{error}</div>
-    //   </div>
-    // </form>
-    <div className="login_form">
-      <div className="login_form_container">
-        <div className="login_form_title">Login</div>
-        <Form dark>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+    <div className="d-flex justify-content-center align-content-center mt-5">
+      <Form
+        className=" "
+        style={{ width: "400px" }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          e.target.reset();
+        }}
+      >
+        <Form.Group className=" mb-5 text-center text-uppercase ">
+          <Nav variant="tabs" defaultActiveKey="#first">
+            <Nav.Item
+              className=" w-50"
+              onClick={(e) => {
+                setLoginType("user");
+              }}
+            >
+              <div className={loginType === "user" ? "bg-primary p-1" : " p-1"}>
+                <BiUserCircle size={"22"} />
+                &nbsp; User
+              </div>
+            </Nav.Item>
+            <Nav.Item
+              className=" w-50"
+              onClick={(e) => {
+                setLoginType("admin");
+              }}
+            >
+              <div
+                className={`${
+                  loginType === "admin" ? "bg-primary p-1" : "p-1 "
+                } `}
+              >
+                <HiOutlineKey size={"20"} />
+                &nbsp; admin
+              </div>
+            </Nav.Item>
+          </Nav>
+        </Form.Group>
+        <Form.Group className=" mb-4 text-center text-uppercase">
+          <span className=" h3">Login</span>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <FloatingLabel
+            controlId="floatingEmail"
+            label="Email"
+            className="w-100"
+          >
             <Form.Control
               type="email"
-              id="email"
               name="email"
+              placeholder="Enter Email"
               onChange={setEmailOnChange}
-              placeholder="Enter email"
+              required
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
+          </FloatingLabel>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+        <Form.Group className="mb-3">
+          <FloatingLabel
+            controlId="floatingPassword"
+            label="Password"
+            className="w-100"
+          >
             <Form.Control
               type="password"
-              id="password"
               name="password"
-              onChange={setPasswordOnChange}
               placeholder="Password"
+              onChange={setPasswordOnChange}
+              required
             />
-          </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group> */}
+          </FloatingLabel>
+        </Form.Group>
+        <Form.Group className="submitDiv">
           <Button
             variant="primary"
-            onClick={(e) =>
+            className="w-100"
+            type="submit"
+            name="login"
+            onClick={(e) => {
               dispatch(
                 login(
                   email,
                   password,
-                  "http://localhost:2323/api/v1/user/login",
-                  "user"
+                  loginType === "user"
+                    ? "http://localhost:2323/api/v1/user/login"
+                    : "http://localhost:2323/api/v1/admin/login",
+                  loginType
                 )
-              )
-            }
-            type="button"
+              );
+              setShow(true);
+            }}
           >
-            Submit
+            Log In
           </Button>
-          {/* <div>{error}</div> */}
-        </Form>
-      </div>
+        </Form.Group>
+        <Form.Group className="mt-2 mb-3">
+          <Toast
+            onClose={() => setShow(false)}
+            show={show}
+            delay={2000}
+            className={
+              loginState.success
+                ? "text-center text-bg-success w-100 "
+                : "text-center text-bg-danger w-100"
+            }
+            autohide
+            animation
+          >
+            <Toast.Body>{loginState.message}</Toast.Body>
+          </Toast>
+        </Form.Group>
+
+        <Form.Group>
+          <span className="text-center">New to IMDB?</span>
+          &nbsp;
+          <Link
+            to={loginType === "user" ? "/user/signup" : "/admin/signup"}
+            className=" link-secondary"
+          >
+            Sign Up
+          </Link>
+        </Form.Group>
+      </Form>
     </div>
   );
 }

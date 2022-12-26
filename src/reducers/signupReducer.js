@@ -11,13 +11,14 @@ const signupReducer = (state = initialState, action) => {
         ...state,
         signedUp: true,
         message: action.payload.message,
+        error: null,
       };
     case "SIGNUP_ERROR":
       return {
         ...state,
         signedUp: false,
-        message: "Error in signing up",
-        error: action.payload,
+        message: action.payload.message,
+        error: action.payload.message,
       };
     default:
       return state;

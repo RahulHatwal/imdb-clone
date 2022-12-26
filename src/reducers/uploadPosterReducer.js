@@ -3,6 +3,7 @@ const initialState = {
   loading: false,
   error: null,
   success: false,
+  id: null,
 };
 
 function uploadPosterReducer(state = initialState, action) {
@@ -19,9 +20,9 @@ function uploadPosterReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        ...action.payload,
-        success: action.success,
-        message: action.message,
+        success: action.payload.success,
+        message: action.payload.message,
+        id: action.payload.upload.id,
       };
     case "UPLOAD_POSTER_FAILURE":
       // Set the loading and success flags to false, and store the error message

@@ -5,9 +5,16 @@ import { Base64 } from "js-base64";
 import RatingModal from "../RatingModal/RatingModal";
 import { BsStarFill } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteMovie, updateMovie } from "../../actions/movieCrudAction";
+import { fetchMovies } from "../../actions/fetchMovieActions";
+import { BiEdit } from "react-icons/bi";
+import UpdateMovieModal from "./UpdateMovieModal";
 
 const MovieCard = (props) => {
   const [rating, setRating] = useState(0);
+  const dispatch = useDispatch();
+
   const { name, year, genre, tags, poster, id } = props.movie;
   const token = localStorage.getItem("token");
   const [posterUrl, setPosterUrl] = useState(
@@ -50,34 +57,28 @@ const MovieCard = (props) => {
   //   debugger;
 
   const deleteCards = () => {
-    axios
-      .delete(
-        `http://localhost:2323/api/v1/movie/${props.movie.id}`,
-        {
-          headers: {
-            authorization: `bearer ${token}`,
-          },
-        },
-        {
-          name: name,
-          genre: genre,
-          tags: tags,
-          poster: poster,
-          year: year,
-        }
-      )
-      .then((res) => {
-        console.log(res.data.message);
-        window.location.reload();
-      });
+    dispatch(deleteMovie(id));
+  };
+
+  const updateCards = () => {
+    dispatch(updateMovie(id));
   };
 
   return (
     <div className="movie-card-container">
       <div className="movie-card-poster-overlay"></div>
-      <div className="delete-icon-overlay" onClick={deleteCards}>
-        <AiFillDelete className="deleteIcon" size={24} />
+      <div className="icon-overlay">
+        <AiFillDelete className="deleteIcon" size={24} onClick={deleteCards} />
+
+        <UpdateMovieModal
+          id={id}
+          color={"balck"}
+          size={22}
+          poster={poster}
+          movie={(name, year, genre, tags)}
+        />
       </div>
+
       <div className="movie-card-poster">
         <img src={posterUrl} alt="poster" />
       </div>

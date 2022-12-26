@@ -1,19 +1,21 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { setLoading, setLoaded } from "./loadingActions";
+
 // Action types
 const FETCH_MOVIES_PENDING = "FETCH_MOVIES_PENDING";
 const FETCH_MOVIES_SUCCESS = "FETCH_MOVIES_SUCCESS";
 const FETCH_MOVIES_FAILED = "FETCH_MOVIES_FAILED";
-const token = localStorage.getItem("token");
 
 // Action creators
-const fetchMoviesPending = () => ({
-  type: FETCH_MOVIES_PENDING,
-});
+function fetchMoviesPending() {
+  return {
+    type: FETCH_MOVIES_PENDING,
+  };
+}
 
-const fetchMoviesSuccess = (movies) => ({
+const fetchMoviesSuccess = (data) => ({
   type: FETCH_MOVIES_SUCCESS,
-  payload: movies,
+  payload: data,
 });
 
 const fetchMoviesFailed = (error) => ({
@@ -25,16 +27,19 @@ const fetchMoviesFailed = (error) => ({
 export const fetchMovies = () => {
   return async (dispatch) => {
     try {
-      console.log(token);
+      // debugger;
       dispatch(fetchMoviesPending());
+      dispatch(setLoading());
       const response = await axios.get("http://localhost:2323/api/v1/movie", {
         headers: {
-          authorization: `bearer ${token}`,
+          authorization: `bearer ${localStorage.getItem("token")}`,
         },
       });
       dispatch(fetchMoviesSuccess(response.data));
+      dispatch(setLoaded());
     } catch (error) {
       dispatch(fetchMoviesFailed(error));
+      dispatch(setLoaded());
     }
   };
 };

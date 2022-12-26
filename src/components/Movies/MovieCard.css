@@ -118,16 +118,38 @@
   font-size: small;
 }
 
-.delete-icon-overlay .deleteIcon {
-  width: 20px;
+.icon-overlay {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 270px;
   color: #1a1a1a3e;
   opacity: 1;
 }
 
+.delete-icon-overlay .deleteIcon {
+  width: 20px;
+  color: #1a1a1a3e;
+  opacity: 1;
+  cursor: pointer;
+}
+
 .delete-icon-overlay {
-  display: flex;
-  justify-content: end;
   position: absolute;
   width: 20px;
   opacity: 1;
+}
+
+.edit-icon-overlay .editIcon {
+  width: 20px;
+  color: #1a1a1a3e;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.edit-icon-overlay {
+  position: absolute;
+  width: 20px;
+  opacity: 1;
+  cursor: pointer;
 }

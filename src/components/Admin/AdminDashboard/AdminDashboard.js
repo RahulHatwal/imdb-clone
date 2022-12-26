@@ -31,7 +31,7 @@ const AdminDashboard = () => {
               <Link to="/admin/addmovies">Add Movies</Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/updatemovies">UpdateMovies Movies</Nav.Link>
+              <Nav.Link href="/admin/updatemovies">Update Movies</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link href="/admin-settings">Admin Settings</Nav.Link>

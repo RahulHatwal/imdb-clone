@@ -1,6 +1,5 @@
 const initialState = {
   isAuthenticated: false,
-  user: null,
   loading: false,
   message: null,
   role: "default",
@@ -18,8 +17,10 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload.user,
-        ...action.payload,
+        ...action.payload.user,
+        ...action.payload.admin,
+        token: action.payload.token,
+        success: action.payload.success,
         message: action.payload.message,
         loading: false,
       };

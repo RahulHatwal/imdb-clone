@@ -24,6 +24,7 @@ const fetchMovieReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         message: action.payload.message,
+        ...action.payload,
       };
     default:
       return state;

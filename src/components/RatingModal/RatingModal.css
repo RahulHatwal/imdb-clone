@@ -44,8 +44,8 @@
 } */
 
 .modal-container {
-  background-color: #1f1f1f;
-  color: aliceblue;
+  background-color: #1f1f1f !important;
+  color: aliceblue !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,11 +80,11 @@
 }
 
 .modal-footer {
-  border: none;
+  border: none !important;
 }
 
 .modal-header {
-  border: none;
+  border: none !important;
 }
 .modal-footer button {
   background-color: #575757;

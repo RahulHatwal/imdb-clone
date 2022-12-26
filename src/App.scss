@@ -1,0 +1,12 @@
+// @import "custom";
+// @import "~bootstrap/scss/bootstrap";
+
+.App {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: static;
+  background-color: black !important;
+  height: 100vh;
+  width: 100vw;
+}

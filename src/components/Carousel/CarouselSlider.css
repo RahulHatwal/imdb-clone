@@ -9,10 +9,8 @@
 } */
 
 .carouselContainer {
-  width: 60%;
+  min-width: 850px;
   height: auto;
-
-  min-height: 550px;
 }
 
 /* .carouselImage {

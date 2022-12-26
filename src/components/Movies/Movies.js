@@ -6,19 +6,19 @@ import MovieFilter from "../MovieFilterNav/MovieFilter";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import useGetMovies from "../../hooks/useGetMovies";
-
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import MovieCard from "./MovieCard";
 import "./Movies.css";
 
 export default function Movies() {
-  const movies = useGetMovies();
-  console.log(movies);
+  const moviesList = useSelector((state) => state.fetchMovies.movies);
+  console.log("moviesList", moviesList);
 
   return (
-    movies && (
+    moviesList && (
       <div className="movies-container">
-        {movies.map((movie) => {
+        {moviesList.map((movie) => {
           console.log(movie);
           return <MovieCard movie={movie} />;
         })}

@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteMovie, updateMovie } from "../../actions/movieCrudAction";
 import { fetchMovies } from "../../actions/fetchMovieActions";
 import { BiEdit } from "react-icons/bi";
+import UpdateMovieModal from "./UpdateMovieModal";
 
 const MovieCard = (props) => {
   const [rating, setRating] = useState(0);
@@ -66,25 +67,18 @@ const MovieCard = (props) => {
   return (
     <div className="movie-card-container">
       <div className="movie-card-poster-overlay"></div>
-      <div className="delete-icon-overlay" onClick={deleteCards}>
-        <AiFillDelete className="deleteIcon" size={24} />
+      <div className="icon-overlay">
+        <AiFillDelete className="deleteIcon" size={24} onClick={deleteCards} />
+
+        <UpdateMovieModal
+          id={id}
+          color={"balck"}
+          size={22}
+          poster={poster}
+          movie={(name, year, genre, tags)}
+        />
       </div>
-      {/* <div className="icon-overlay">
-        <div className="delete-icon-overlay" onClick={deleteCards}>
-          <AiFillDelete className="deleteIcon" size={24} />
-        </div>
-        <div className="edit-icon-overlay" onClick={updateCards}>
-          <BiEdit className="editIcon" size={24} />
-        </div>
-      </div> */}
-      {/* <div className="icon-overlay d-flex" onClick={updateCards}>
-        <div className=" w-50">
-          <AiFillDelete className="deleteIcon" size={24} />
-        </div>
-        <div className=" w-50">
-          <BiEdit className="editIcon" size={24} />
-        </div>
-      </div> */}
+
       <div className="movie-card-poster">
         <img src={posterUrl} alt="poster" />
       </div>

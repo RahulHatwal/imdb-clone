@@ -50,20 +50,20 @@ export function addMovie(movie) {
   };
 }
 
-export function updateMovie(movie) {
+export function updateMovie(movie, id) {
   return async (dispatch) => {
     dispatch({ type: UPDATE_MOVIE_PENDING });
     dispatch(setLoading());
     try {
       // Make API call to update movie
       const response = await axios.put(
-        `/api/movies/${movie.id}`,
+        `http://localhost:2323/api/v1/movie/${id}`,
+        movie,
         {
           headers: {
             authorization: `bearer ${localStorage.getItem("token")}`,
           },
-        },
-        movie
+        }
       );
       dispatch({
         type: UPDATE_MOVIE_SUCCESS,

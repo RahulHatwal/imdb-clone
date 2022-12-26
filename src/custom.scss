@@ -16,16 +16,17 @@ body {
   /* Set the background color to IMDB's dark color */
   background-color: $dark;
   /* Set the font family to a sans-serif font */
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Roboto", Helvetica, Arial, sans-serif !important;
 }
 
 /* Customize the appearance of the navbar */
-.navbar {
-  /* Use a gradient background color for the navbar */
-  background: linear-gradient(to right, $primary, $secondary);
-  /* Add a box shadow to the navbar */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+// .navbar {
+//   /* Use a gradient background color for the navbar */
+//   background: #121212;
+// }
+// .navbar-collapse {
+//   color: $light;
+// }
 
 /* Customize the appearance of buttons */
 .btn {

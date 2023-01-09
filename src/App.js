@@ -28,6 +28,7 @@ import LoginSignupLayout from "./Layout/LoginSignupLayout";
 import Spinner from "../src/LoaderSpinner/Spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMovies } from "./actions/fetchMovieActions";
+import MovieDetail from "./components/Movies/MovieDetail";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ const App = () => {
               element={<MovieInfo data={data} />}
             />
             <Route path="/movies" element={<MovieCard />} />
+            <Route path="/movies/:id" element={<MovieDetail />} />
           </Route>
           <Route path="/user" element={<LoginSignupLayout />}>
             <Route path="login" element={<Login />} />

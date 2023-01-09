@@ -6,6 +6,7 @@ import { LandingInfo } from "./LandingInfo/LandingInfo";
 import { landingInfoData } from "../LandingData/LandingData";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Movies from "../Movies/Movies";
 
 //passing props
 export default function Landing({ isLoggedIn, moviesImages }) {
@@ -18,17 +19,16 @@ export default function Landing({ isLoggedIn, moviesImages }) {
         {/* <Carousel moviesImages={moviesImages} /> */}
 
         {/* carousel made with react-bootstrap */}
-        <CarouselSlider />
+        {/* <CarouselSlider /> */}
 
-        {landingInfoData.map((text) => {
+        {/* {landingInfoData.map((text) => {
           return (
             <div class="InfoCards">
               <LandingInfo text={text} />
             </div>
           );
-        })}
-
-        <Link to="/movies">movies</Link>
+        })} */}
+        <Movies />
       </div>
     </>
   );

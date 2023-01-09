@@ -77,28 +77,35 @@ const Header = (props) => {
           <Offcanvas.Body className=" mt-3">
             <Nav>
               <Navlink />
+              {localStorage.getItem("role") === "admin" ? (
+                <Nav.Link
+                  href="/admin/dashboard"
+                  className=" text-uppercase text-light fw-light"
+                >
+                  <BsCollectionPlay size={22} color="#8e8e8e" />
+                  &nbsp;&nbsp; Admin Dashboard
+                </Nav.Link>
+              ) : null}
               <Nav.Link
-                href="#"
+                href="/movies"
                 className=" text-uppercase text-light fw-light"
               >
                 <BsCollectionPlay size={22} color="#8e8e8e" />
-                &nbsp;&nbsp; Watch
+                &nbsp;&nbsp; Movies
               </Nav.Link>
-
+              <Nav.Link
+                href="/topmovies"
+                className=" text-uppercase text-light fw-light"
+              >
+                <MdStars size={23} color="#8e8e8e" />
+                &nbsp;&nbsp; Top Movies List(Working On It)
+              </Nav.Link>
               <Nav.Link
                 href="#"
                 className=" text-uppercase text-light fw-light"
               >
                 <MdMonitor size={23} color="#8e8e8e" />
-                &nbsp;&nbsp; TV Shows
-              </Nav.Link>
-
-              <Nav.Link
-                href="#"
-                className=" text-uppercase text-light fw-light"
-              >
-                <MdStars size={23} color="#8e8e8e" />
-                &nbsp;&nbsp; Awards & Events
+                &nbsp;&nbsp; TV Shows(Coming Soon)
               </Nav.Link>
 
               <Nav.Link
@@ -106,7 +113,7 @@ const Header = (props) => {
                 className=" text-uppercase text-light fw-light"
               >
                 <MdPeople size={23} color="#8e8e8e" />
-                &nbsp;&nbsp; Celebs
+                &nbsp;&nbsp; Celebs(Coming Soon)
               </Nav.Link>
             </Nav>
           </Offcanvas.Body>

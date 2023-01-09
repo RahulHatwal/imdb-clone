@@ -47,7 +47,7 @@ export default function MovieCharts() {
                       <td className="titleColumn align-middle">
                         {`${movie.rank}. `}
                         <Link
-                          to={`/movie/${movie.id}`}
+                          to={`/topmovies/${movie.id}`}
                           state={{ movie: movie }}
                         >{`${movie.name} `}</Link>
                         ({movie.year})

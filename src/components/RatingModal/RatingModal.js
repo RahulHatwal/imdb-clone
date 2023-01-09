@@ -1,23 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsStar, BsFillStarFill } from "react-icons/bs";
 import { Rating } from "react-simple-star-rating";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "./RatingModal.css";
+import { useDispatch } from "react-redux";
+import { fetchMovies } from "../../actions/fetchMovieActions";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function RatingModal(props) {
   const { movie, starSize, modalStarSize, starColor, text, movieRating } =
     props;
   console.log(props);
   const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
+  const [userRating, setUserRating] = useState(0);
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   // Catch Rating value
   const handleRating = (rate) => {
+    console.log("handleRating", rate);
     setRating(rate);
-    axios
-      .post(
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("role") === "user") {
+      axios
+        .get(`http://localhost:2323/api/v1/rating/movie/${movie.id}`, {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
+          console.log("respose form rating API", res);
+          if (res.data.success) {
+            setUserRating(res.data.rating.star);
+          }
+        });
+    }
+  }, [userRating]);
+
+  const rate = async () => {
+    try {
+      setShow(false);
+      const res = await axios.post(
         "http://localhost:2323/api/v1/rating",
         {
           movieId: movie.id,
@@ -25,17 +53,23 @@ export default function RatingModal(props) {
         },
         {
           headers: {
-            authorization: `bearer ${token}`,
+            authorization: `bearer ${localStorage.getItem("token")}`,
           },
         }
-      )
-      .then((res) => {
+      );
+      if (res) {
         console.log(res);
-        console.log(res.data.message);
-      });
-    console.log(rate);
+        dispatch(fetchMovies());
+        handleClose();
+        navigate(0);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
-
+  // const onPointerMove = (value, index) => setRating(value);
+  // const onPointerEnter = () => console.log('Enter');
+  // const onPointerLeave = () => console.log('Leave');
   const handleClose = (e) => {
     setShow(false);
   };
@@ -48,7 +82,7 @@ export default function RatingModal(props) {
     <>
       <div className="movieModal" onClick={handleShow}>
         <BsStar color={starColor} size={starSize} />{" "}
-        <span className="movie-star-rating">{movieRating}</span>
+        <span className="movie-star-rating">{userRating}</span>
       </div>
 
       <Modal
@@ -69,7 +103,7 @@ export default function RatingModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Rating
-            initialValue={parseInt(movieRating)}
+            initialValue={parseInt(userRating)}
             size={modalStarSize}
             onClick={handleRating}
             fillColorArray={[
@@ -103,7 +137,7 @@ export default function RatingModal(props) {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={rate}>
             Rate
           </Button>
         </Modal.Footer>

@@ -5,7 +5,7 @@ import "./CarouselSlider.css";
 
 function CarouselSlider() {
   return (
-    <div className="d-block center mx-auto carouselContainer">
+    <div className="d-block center mx-auto carouselContainer" >
       {/* <Carousel dark wrap fade>
         <Carousel.Item interval={3000}>
           <img

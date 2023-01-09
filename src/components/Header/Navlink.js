@@ -25,7 +25,9 @@ const Navlink = (props) => {
                 localStorage.clear();
               }}
             >
-              {user.isAuthenticated ? user.firstName : logout}
+              {user.isAuthenticated
+                ? `${user.firstName} (${user.role})`
+                : logout}
             </span>
           </Nav.Link>
         ) : (

@@ -1,5 +1,17 @@
 # IMDB Clone
 
+To run this project in your system
+Step 1 - first clone this project in your directory
+Step 2 - npm install
+Step 3 - clone imdb backend in same directory
+         link - https://github.com/RahulHatwal/imdb_backend
+Step 4 - npm install 
+Step 5 - rename env.sample to .env
+Step 6 - cd to docker folder which is inside imdb_backend > _dev directory
+Step 7 - docker-compose up -d
+Step 8 - cd back to imdb_backend root
+Step 9 - npm run dev
+
 This App will have 2 views
 
 1. Client View

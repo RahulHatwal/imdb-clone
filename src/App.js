@@ -31,6 +31,7 @@ import { fetchMovies } from "./actions/fetchMovieActions";
 import MovieDetail from "./components/Movies/MovieDetail";
 
 const App = () => {
+  const role = useSelector((state) => state.auth.role);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMovies());
@@ -42,8 +43,14 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           {/* Role - user */}
-          <Route path="/" element={<Base />}>
-            <Route index element={<Landing />} />
+          <Route
+            path="/"
+            element={role === "default" ? <LoginSignupLayout /> : <Base />}
+          >
+            <Route
+              index
+              element={role === "default" ? <Login /> : <Landing />}
+            />
             <Route path="/topmovies" element={<MovieCharts />} />
             <Route
               path="/topmovies/:name"

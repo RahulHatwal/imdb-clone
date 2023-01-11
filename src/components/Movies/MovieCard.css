@@ -12,7 +12,35 @@
   font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
 
+.movie-card-container-admin {
+  border-radius: 10px;
+  color: white;
+  width: 300px;
+  height: 630px;
+  /* padding: 20px; */
+  margin: 25px;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
 .movie-card-poster-overlay {
+  width: 300px;
+  height: 450px;
+  background: radial-gradient(
+    circle,
+    rgba(56, 68, 75, 0.1) 60%,
+    rgba(35, 43, 48, 0.7) 100%
+  );
+  /* background-color: #1a1a1a;
+  opacity: 0.2; */
+  position: absolute;
+  transition: 0.5s ease-out;
+}
+
+.movie-card-poster-overlay-admin {
   width: 300px;
   height: 450px;
   background: radial-gradient(
@@ -64,6 +92,21 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.movie-card-rating-container-admin {
+  background-color: #0000002d;
+  color: #b5b7b2;
+  margin-top: 15px;
+  width: 270px;
+  display: flex;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
 .movie-card-rating-container > .movie-card-imdb-rating {
   display: flex;
   /* justify-content: space-between; */
@@ -126,6 +169,26 @@
   width: 270px;
   color: #1a1a1a3e;
   opacity: 1;
+}
+
+.icon-overlay-admin {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 270px;
+  color: #1a1a1a3e;
+  opacity: 1;
+}
+
+.admin-options {
+  display: flex;
+  margin-top: 8px;
+  justify-content: space-between;
+  width: 270px;
+  background-color: #0000002d;
+  padding: 5px;
+  border-radius: 10px;
+  border-top: 2px solid rgb(48, 48, 47);
 }
 
 .delete-icon-overlay .deleteIcon {

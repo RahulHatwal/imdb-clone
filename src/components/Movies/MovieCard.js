@@ -62,70 +62,110 @@ const MovieCard = (props) => {
   };
 
   return (
-    <div className="movie-card-container">
-      <div className="movie-card-poster-overlay"></div>
-      <div className="icon-overlay">
-        {userRole === "admin" ? (
-          <AiFillDelete
-            className="deleteIcon"
-            size={24}
-            onClick={deleteCards}
-          />
-        ) : null}
-        {userRole === "admin" ? (
-          <UpdateMovieModal
-            id={id}
-            color={"balck"}
-            size={22}
-            poster={poster}
-            movie={(name, year, genre, tags)}
-          />
-        ) : null}
-      </div>
-
-      <div className="movie-card-poster">
-        <img src={posterUrl} alt="poster" />
-      </div>
-
-      <div className="movie-card-title ">
-        {" "}
-        <Link
-          className="text-decoration-none text-primary"
-          to={`/movies/${id}`}
-          state={{ movie: { ...props.movie, ratingAvg, rating } }}
-        >
-          {name}
-        </Link>
-      </div>
-      <div className="movie-card-yeargenre-row">
-        <div className="movie-card-year">Year: {year}</div>
-        <div className="movie-card-genre">genre: {genre}</div>
-      </div>
-
-      <div className="movie-card-rating-container">
-        <div className="movie-card-imdb-rating">
-          <BsStarFill
-            size="20px"
-            color="orange"
-            style={{ margin: "0px 8px 0px 0px" }}
-          />
-          {ratingAvg}
-        </div>
-        {userRole === "user" ? (
-          <div className="movie-card-your-rating">
-            <RatingModal
-              movie={props.movie}
-              movieRating={ratingAvg}
-              starSize={17}
-              modalStarSize={31}
-              starColor={"skyblue"}
-              text="Rate this"
+    <div>
+      <div
+        className={
+          userRole === "admin"
+            ? "movie-card-container-admin"
+            : "movie-card-container"
+        }
+      >
+        <div
+          className={
+            userRole === "admin"
+              ? "movie-card-poster-overlay-admin"
+              : "movie-card-poster-overlay"
+          }
+        ></div>
+        <div className="icon-overlay">
+          {userRole === "admin" ? (
+            <AiFillDelete
+              className="deleteIcon"
+              size={24}
+              onClick={deleteCards}
             />
+          ) : null}
+          {userRole === "admin" ? (
+            <UpdateMovieModal
+              id={id}
+              color={"balck"}
+              size={22}
+              poster={poster}
+              movie={(name, year, genre, tags)}
+            />
+          ) : null}
+        </div>
+
+        <div className="movie-card-poster">
+          <img src={posterUrl} alt="poster" />
+        </div>
+
+        <div className="movie-card-title ">
+          {" "}
+          <Link
+            className="text-decoration-none text-primary"
+            to={`/movies/${id}`}
+            state={{ movie: { ...props.movie, ratingAvg, rating } }}
+          >
+            {name}
+          </Link>
+        </div>
+        <div className="movie-card-yeargenre-row">
+          <div className="movie-card-year">Year: {year}</div>
+          <div className="movie-card-genre">genre: {genre}</div>
+        </div>
+
+        <div
+          className={
+            userRole === "admin"
+              ? "movie-card-rating-container-admin"
+              : "movie-card-rating-container"
+          }
+        >
+          <div className="movie-card-imdb-rating">
+            <BsStarFill
+              size="20px"
+              color="orange"
+              style={{ margin: "0px 8px 0px 0px" }}
+            />
+            {ratingAvg}
+          </div>
+          {userRole === "user" ? (
+            <div className="movie-card-your-rating">
+              <RatingModal
+                movie={props.movie}
+                movieRating={ratingAvg}
+                starSize={17}
+                modalStarSize={31}
+                starColor={"skyblue"}
+                text="Rate this"
+              />
+            </div>
+          ) : null}
+        </div>
+
+        {/* <div className="movie-card-tags">{tags}</div> */}
+        {userRole === "admin" ? (
+          <div className="admin-options">
+            {userRole === "admin" ? (
+              <AiFillDelete
+                className="deleteIcon"
+                size={20}
+                onClick={deleteCards}
+              />
+            ) : null}
+            {userRole === "admin" ? (
+              <UpdateMovieModal
+                id={id}
+                color={"balck"}
+                size={20}
+                poster={poster}
+                movie={(name, year, genre, tags)}
+              />
+            ) : null}
           </div>
         ) : null}
       </div>
-
-      {/* <div className="movie-card-tags">{tags}</div> */}
     </div>
   );
 };

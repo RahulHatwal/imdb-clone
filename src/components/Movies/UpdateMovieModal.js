@@ -7,7 +7,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Toast from "react-bootstrap/Toast";
 import { BiEdit } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
-import { updateMovie } from "../../actions/movieCrudAction";
+import { updateMovie } from "../../actions/movieCrudActions";
 function UpdateMovieModal(props) {
   const [modalShow, setModalShow] = useState(false);
   const { id, color, size, poster, movie } = props;

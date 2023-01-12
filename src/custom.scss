@@ -19,15 +19,6 @@ body {
   font-family: "Roboto", Helvetica, Arial, sans-serif !important;
 }
 
-/* Customize the appearance of the navbar */
-// .navbar {
-//   /* Use a gradient background color for the navbar */
-//   background: #121212;
-// }
-// .navbar-collapse {
-//   color: $light;
-// }
-
 /* Customize the appearance of buttons */
 .btn {
   /* Use IMDB's secondary color for the button background */
@@ -45,30 +36,6 @@ body {
   }
 }
 
-// .btn {
-//   background-image: linear-gradient(
-//     to right,
-//     #ff8008 0%,
-//     #ffc837 51%,
-//     #ff8008 100%
-//   );
-//   margin: 10px;
-//   padding: 15px 45px;
-//   text-align: center;
-//   text-transform: uppercase;
-//   transition: 0.5s;
-//   background-size: 200% auto;
-//   color: white;
-//   box-shadow: 0 0 20px #eee;
-//   border-radius: 10px;
-//   display: block;
-// }
-
-// .btn:hover {
-//   background-position: right center; /* change the direction of the change here */
-//   color: #fff;
-//   text-decoration: none;
-// }
 /* Customize the appearance of card components */
 .card {
   /* Add a subtle shadow to cards */

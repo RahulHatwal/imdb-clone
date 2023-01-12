@@ -1,10 +1,6 @@
 .adminSignUp {
   color: white;
-
   margin: 40px 20% 10px 20%;
-
-  /* display: flex; */
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
 }
@@ -32,7 +28,6 @@
   display: flex;
   justify-content: space-between;
   font-size: large;
-  /* justify-content: center; */
 }
 
 label {

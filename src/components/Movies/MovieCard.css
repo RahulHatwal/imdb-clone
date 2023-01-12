@@ -3,7 +3,6 @@
   color: white;
   width: 300px;
   height: 610px;
-  /* padding: 20px; */
   margin: 25px;
   background-color: #1a1a1a;
   display: flex;
@@ -17,7 +16,6 @@
   color: white;
   width: 300px;
   height: 630px;
-  /* padding: 20px; */
   margin: 25px;
   background-color: #1a1a1a;
   display: flex;
@@ -34,8 +32,6 @@
     rgba(56, 68, 75, 0.1) 60%,
     rgba(35, 43, 48, 0.7) 100%
   );
-  /* background-color: #1a1a1a;
-  opacity: 0.2; */
   position: absolute;
   transition: 0.5s ease-out;
 }
@@ -48,8 +44,6 @@
     rgba(56, 68, 75, 0.1) 60%,
     rgba(35, 43, 48, 0.7) 100%
   );
-  /* background-color: #1a1a1a;
-  opacity: 0.2; */
   position: absolute;
   transition: 0.5s ease-out;
 }
@@ -57,11 +51,6 @@
 .movie-card-poster-overlay:hover {
   width: 300px;
   height: 450px;
-  /* background: radial-gradient(
-    circle,
-    rgba(56, 68, 75, 0.1) 40%,
-    rgba(35, 43, 48, 0.7) 100%
-  ); */
   opacity: 0.1;
   position: absolute;
 }
@@ -109,7 +98,6 @@
 
 .movie-card-rating-container > .movie-card-imdb-rating {
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   width: 200px;
 
@@ -118,7 +106,6 @@
 }
 
 .movie-card-rating-container > .movie-card-your-rating {
-  /* margin-right: 90px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,7 +125,6 @@
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
-  /* background-color: aqua; */
 }
 
 .movie-card-genre {

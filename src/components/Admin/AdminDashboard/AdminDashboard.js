@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Card, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { MdLocalMovies } from "react-icons/md";
 const AdminDashboard = () => {
   return (
     <Container className="mt-5">
@@ -14,7 +15,8 @@ const AdminDashboard = () => {
             <Card.Body>
               <h1>Welcome to your Dashboard!</h1>
               <p>
-                This is where you can view and manage your movie collection.
+                This is where you can view and manage your movie
+                collection.(Working on it..)
               </p>
             </Card.Body>
           </Card>
@@ -28,16 +30,31 @@ const AdminDashboard = () => {
             className="bg-dark flex-column flex-nowrap text-decoration-none"
           >
             <Nav.Item>
-              <Link to="/admin/addmovies">Add Movies</Link>
+              <Link
+                to="/admin/addmovies"
+                className="btn btn-outline-primary w-100 p-2 mb-3"
+              >
+                <AiOutlineAppstoreAdd />
+                &nbsp; Add Movies
+              </Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/admin/updatemovies">Update Movies</Nav.Link>
+              <Link
+                to="/movies"
+                className="btn btn-outline-primary w-100 p-2 mb-3"
+              >
+                <MdLocalMovies />
+                &nbsp; Movies
+              </Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/admin-settings">Admin Settings</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="/logout">Logout</Nav.Link>
+              <a
+                href="/"
+                className="btn btn-light w-100"
+                onClick={() => localStorage.clear()}
+              >
+                Logout
+              </a>
             </Nav.Item>
           </Nav>
         </Col>

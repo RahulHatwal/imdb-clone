@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./MovieCard.css";
 import axios from "axios";
-import { Base64 } from "js-base64";
 import RatingModal from "../RatingModal/RatingModal";
 import { BsStarFill } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteMovie, updateMovie } from "../../actions/movieCrudAction";
-import { fetchMovies } from "../../actions/fetchMovieActions";
-import { BiEdit } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { deleteMovie } from "../../actions/movieCrudActions";
 import UpdateMovieModal from "./UpdateMovieModal";
 import { Link } from "react-router-dom";
 
@@ -55,10 +52,6 @@ const MovieCard = (props) => {
 
   const deleteCards = () => {
     dispatch(deleteMovie(id));
-  };
-
-  const updateCards = () => {
-    dispatch(updateMovie(id));
   };
 
   return (

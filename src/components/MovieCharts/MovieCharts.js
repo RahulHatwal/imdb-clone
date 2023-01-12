@@ -20,7 +20,7 @@ export default function MovieCharts() {
         <div className="article">
           <h3>IMDb Charts</h3>
           <h1 className="header">IMDb top Movies</h1>
-          <div class="byline">
+          <div className="byline">
             IMDb Top Movies as rated by regular IMDb voters.
           </div>
           <hr />
@@ -40,7 +40,7 @@ export default function MovieCharts() {
               <tbody className="lister-list">
                 {topMoviesList.map((movie) => {
                   return (
-                    <tr className=" movie-charts-list-row">
+                    <tr className=" movie-charts-list-row" key={movie.id}>
                       <td className="posterColum align-middle">
                         <img src={movie.posterUrl} className="poster-image" />
                       </td>
@@ -81,52 +81,5 @@ export default function MovieCharts() {
         </div>
       </div>
     </div>
-    // <div className="movie-charts">
-    //   <div className="movie-charts-container">
-    //     <div className="movie-charts-title">
-    //       <h4>Movie charts</h4>
-    //     </div>
-    //     <MovieFilter movieList={bootstrap.movies.list} />
-    //     <div className="movie-charts-titleContainer">
-    //       <div className="movie-charts-movieTitle">
-    //         <h5>Rank & Title</h5>
-    //       </div>
-    //       <div className="movie-charts-rating">
-    //         <h5>IMDB Rating</h5>
-    //       </div>
-    //       <div className="movie-charts-your-rating">
-    //         <h5>Your Rating</h5>
-    //       </div>
-    //       <div className="movie-charts-wishlist">
-    //         <h5>Wishlist</h5>
-    //       </div>
-    //     </div>
-
-    //     {topMoviesList.map((movie) => {
-    //       return (
-    //         <div className=" movie-charts-list-row">
-    //           <div className="movie-charts-movieTitle">
-    //             <img src={movie.posterUrl} className="poster-image" />
-    //             <h6>{`${movie.rank}.  ${movie.name} (${movie.year})`}</h6>
-    //           </div>
-    //           <div className="movie-charts-rating">
-    //             <h6>
-    //               <BsFillStarFill /> {movie.rating}
-    //             </h6>
-    //           </div>
-    //           <div className="movie-charts-your-rating">
-    //             <h6>
-    //               <RatingModal movie={movie} />
-    //             </h6>
-    //           </div>
-
-    //           <div className="movie-charts-wishlist">
-    //             <BsFillBookmarkPlusFill />
-    //           </div>
-    //         </div>
-    //       );
-    //     })}
-    //   </div>
-    // </div>
   );
 }

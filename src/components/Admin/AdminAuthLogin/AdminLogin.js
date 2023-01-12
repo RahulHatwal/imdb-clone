@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./adminLogin.css";
-import axios from "axios";
-import useCheckAdmin from "../../../hooks/useCheckAdmin";
 import { login } from "../../../actions/authActions";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";

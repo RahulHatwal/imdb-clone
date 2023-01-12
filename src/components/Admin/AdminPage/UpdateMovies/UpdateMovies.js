@@ -1,15 +1,6 @@
 import React from "react";
-import useCheckAdmin from "../../../../hooks/useCheckAdmin";
-import useGetMovies from "../../../../hooks/useGetMovies";
-import "./UpdateMovies.css";
 
-export default function UpdateMovies(props) {
-  // const currentAdmin = useCheckAdmin(
-  //   "http://localhost:2323/api/v1/admin/currentAdmin"
-  // );
-
-  const movies = useGetMovies();
-
+export default function UpdateMovies() {
   return (
     <div className="Auth-form-container">
       <form className="Auth-form">
@@ -33,7 +24,7 @@ export default function UpdateMovies(props) {
           </div>
 
           <div className="form-group mt-3">
-            <label for="genre">Genre</label>
+            <label>Genre</label>
             <select
               name="genre"
               id="movieGenre"

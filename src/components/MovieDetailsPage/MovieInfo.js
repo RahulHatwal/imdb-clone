@@ -1,15 +1,15 @@
 import React from "react";
 import "./movieInfo.css";
 import { BsFillStarFill, BsStar } from "react-icons/bs";
-import RatingModal from "../RatingModal/RatingModal";
 import { useLocation } from "react-router-dom";
+import CarouselSlider from "../Carousel/CarouselSlider";
 
 const MovieInfo = (props) => {
   const location = useLocation();
   console.log(props, " props");
   console.log(location, " useLocation Hook");
   //   const { name, description, year, rating, posterUrl, image, tagline, genre } = props.data.movies.list[0];
-  const { name, description, year, rating, posterUrl, image, tagline, genre } =
+  const { name, description, year, rating, posterUrl, image, tagline } =
     location.state?.movie;
   return (
     <div className="movieInfoContainer">
@@ -29,12 +29,6 @@ const MovieInfo = (props) => {
           <h4>Your Rating</h4>
           <div className="ratingBlock">
             <BsStar color="lightblue" size={24}></BsStar>
-            {/* <RatingModal
-              movie={props.data.movies.list[0]}
-              starSize={24}
-              starColor={"lightblue"}
-              text="Rate this"
-            /> */}
             <h4>Rate</h4>
           </div>
         </div>
@@ -42,6 +36,7 @@ const MovieInfo = (props) => {
 
       <div className="movieCoverImg">
         <img src={posterUrl} className="moviePoster" alt={name} />
+        <CarouselSlider />
         <img src={image} className="movieCover" alt={`${name} image poster`} />
       </div>
 
@@ -50,12 +45,6 @@ const MovieInfo = (props) => {
         <p className="storylineBody">{description}</p>
       </div>
       <div className="misc">
-        {/* <div>
-          <b>Genre</b>{" "}
-          {genre.map((genre) => (
-            <p className="genreCard">{genre}</p>
-          ))}
-        </div> */}
         <hr />
         <div>
           <h5 className="orangeBorder">Taglines</h5>

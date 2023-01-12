@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
-import useCheckAdmin from "../../../../hooks/useCheckAdmin";
-import useCheckCurrentUser from "../../../../hooks/useCheckCurrentUser";
-// import "./AddMovies.css";
-import axios from "axios";
-import { BsFillPrinterFill } from "react-icons/bs";
+import React, {  useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { uploadPoster } from "../../../../actions/uploadPosterActions";
-import { addMovie } from "../../../../actions/movieCrudAction";
+import { addMovie } from "../../../../actions/movieCrudActions";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Toast from "react-bootstrap/Toast";
 
-export default function AddMovies(props) {
+export default function AddMovies() {
   const [name, setName] = useState("");
 
   const [year, setYear] = useState("");
@@ -25,88 +20,6 @@ export default function AddMovies(props) {
   const createdMovieState = useSelector((state) => state.movieCrud);
 
   return (
-    // <div className="Auth-form-container">
-    //   <form className="Auth-form">
-    //     <div className="Auth-form-content">
-    //       <h3 className="Auth-form-title">Add New Movie</h3>
-    //       <div className="form-group mt-3">
-    //         <label>Name</label>
-    //         <input
-    //           type="text"
-    //           className="form-control mt-1 Auth-form-input"
-    //           placeholder="Enter movie name"
-    //           onChange={(e) => setName(e.target.value)}
-    //         />
-    //       </div>
-    //       <div className="form-group mt-3">
-    //         <label>Launch Year</label>
-    //         <input
-    //           type="text"
-    //           className="form-control mt-1 Auth-form-input"
-    //           placeholder="Enter launch date"
-    //           onChange={(e) => setYear(e.target.value)}
-    //         />
-    //       </div>
-
-    //       <div className="form-group mt-3">
-    //         <label for="genre">Genre</label>
-    //         <select
-    //           name="genre"
-    //           id="movieGenre"
-    //           className="form-select mt-1 Auth-form-input"
-    //           onChange={(e) => setGenre(e.target.value)}
-    //         >
-    //           <option value="action">Action</option>
-    //           <option value="adventure">Adventure</option>
-    //           <option value="comedy">Comedy</option>
-    //           <option value="drama">Drama</option>
-    //           <option value="fantasy">Fantasy</option>
-    //           <option value="horror">Horror</option>
-    //           <option value="musicals">Musicals</option>
-    //           <option value="mystery">Mystery</option>
-    //           <option value="romance">Romance</option>
-    //           <option value="scifi">Science Fiction</option>
-    //           <option value="thriller">Thriller</option>
-    //           <option value="western">Western</option>
-    //         </select>
-    //       </div>
-
-    //       <div className="form-group mt-3">
-    //         <label>Tags</label>
-    //         <input
-    //           type="text"
-    //           className="form-control mt-1 Auth-form-input"
-    //           placeholder="Enter tags seprating with ','"
-    //           onChange={(e) => setTags(e.target.value)}
-    //           required
-    //         />
-    //       </div>
-
-    //       <div className="form-group mt-3">
-    //         <label>Poster</label>
-    //         <input
-    //           type="file"
-    //           className="form-control mt-1 Auth-form-input"
-    //           onChange={(e) => dispatch(uploadPoster(e))}
-    //           required
-    //         />
-    //       </div>
-
-    //       <div className="d-grid gap-2 mt-3">
-    //         <button
-    //           type="button"
-    //           className="btn btn-primary"
-    //           onClick={() =>
-    //             dispatch(addMovie({ name, genre, tags, poster, year }))
-    //           }
-    //         >
-    //           Add
-    //         </button>
-    //       </div>
-    //       <div className="errorNameMsg">{}</div>
-    //     </div>
-    //   </form>
-    // </div>
     <div className="d-flex justify-content-center align-content-center mt-5">
       <Form
         className=" "

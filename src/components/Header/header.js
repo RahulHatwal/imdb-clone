@@ -1,28 +1,18 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { CgProfile } from "react-icons/cg";
 import { MdMonitor, MdStars, MdPeople } from "react-icons/md";
 import { BsCollectionPlay } from "react-icons/bs";
-import Navlink from "./Navlink";
+import Navlink from "./UserInfoNav";
 import "./Header.css";
-import {
-  appName,
-  logoUrl,
-  login,
-  signup,
-  logout,
-} from "../../helpers/constants.js";
+import { appName, logoUrl } from "../../helpers/constants.js";
+import UserInfoNav from "./UserInfoNav";
 
 const Header = (props) => {
   console.log(props);
-  const logoutHandle = () => {
-    localStorage.clear();
-  };
 
   return (
     <Navbar collapseOnSelect expand="false" variant="dark">
@@ -33,12 +23,7 @@ const Header = (props) => {
             style={{ marginRight: "25px" }}
           />
           <Link className="text-decoration-none" to="/">
-            <img
-              width={"65px"}
-              src={logoUrl}
-              alt="IMDB Logo"
-              onClick={props.onLogoClick}
-            />
+            <img width={"65px"} src={logoUrl} alt="IMDB Logo" />
             <span
               className=" mx-2 text-uppercase text-primary align-bottom fs-4 p-1 rounded-3 "
               style={{ backgroundColor: "black" }}
@@ -60,12 +45,7 @@ const Header = (props) => {
             className=""
           >
             <Offcanvas.Title className=" text-primary text-uppercase  ">
-              <img
-                width={"65px"}
-                src={logoUrl}
-                alt="IMDB Logo"
-                onClick={props.onLogoClick}
-              />
+              <img width={"65px"} src={logoUrl} alt="IMDB Logo" />
               <span
                 className=" mx-2 text-uppercase text-primary align-bottom fs-4 p-1 rounded-3 "
                 style={{ backgroundColor: "black" }}
@@ -76,7 +56,7 @@ const Header = (props) => {
           </Offcanvas.Header>
           <Offcanvas.Body className=" mt-3">
             <Nav>
-              <Navlink />
+              <UserInfoNav />
               {localStorage.getItem("role") === "admin" ? (
                 <Nav.Link
                   href="/admin/dashboard"

@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BsCheckSquare, BsFillExclamationCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../actions/signupAction";
+import { signup } from "../../actions/signupActions";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Toast from "react-bootstrap/Toast";
 import { Link } from "react-router-dom";
-import { isValid } from "js-base64";
 
-export default function SignUp(props) {
+export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");

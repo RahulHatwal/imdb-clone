@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
-import useCheckCurrentUser from "../../hooks/useCheckCurrentUser";
-
-import axios from "axios";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Toast from "react-bootstrap/Toast";
-import { Link, Navigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../actions/authActions";
 import { BiUserCircle } from "react-icons/bi";
-import { RiAdminLine } from "react-icons/ri";
 import { HiOutlineKey } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { setLoading, setLoaded } from "../../actions/loadingActions";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -71,7 +66,7 @@ export default function Login() {
             </Nav.Item>
             <Nav.Item
               className=" w-50"
-              onClick={(e) => {
+              onClick={() => {
                 setLoginType("admin");
               }}
             >

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import { BsFillStarFill, BsStar } from "react-icons/bs";
-import RatingModal from "../RatingModal/RatingModal";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 const MovieDetail = (props) => {
@@ -53,16 +52,8 @@ const MovieDetail = (props) => {
     }
   });
   //   const { name, description, year, rating, posterUrl, image, tagline, genre } = props.data.movies.list[0];
-  const {
-    name,
-    year,
-    rating,
-    ratingAvg,
-    posterUrl,
-    image,
-    tags,
-    genre,
-  } = location.state?.movie;
+  const { name, year, rating, ratingAvg, posterUrl, image, tags, genre } =
+    location.state?.movie;
 
   return (
     <div className="movieInfoContainer mt-3">

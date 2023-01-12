@@ -4,17 +4,14 @@ import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { login, logout } from "../../helpers/constants.js";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
-const Navlink = (props) => {
+const UserInfoNav = () => {
   const user = useSelector((state) => state.auth);
-  const Navigate = useNavigate();
   console.log("firstname", user.firstName);
-  const { className } = props;
 
   return (
     <div>
-      <Nav className={className}>
+      <Nav>
         {localStorage.getItem("token") ? (
           <Nav.Link href="/" className="text-decoration-none mb-2">
             <CgProfile size={24} color="#8e8e8e" />
@@ -42,4 +39,4 @@ const Navlink = (props) => {
   );
 };
 
-export default Navlink;
+export default UserInfoNav;

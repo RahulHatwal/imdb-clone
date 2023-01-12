@@ -45,11 +45,27 @@ const App = () => {
           {/* Role - user */}
           <Route
             path="/"
-            element={role === "default" ? <LoginSignupLayout /> : <Base />}
+            element={
+              role === "default" &&
+              localStorage.getItem("role") !== "user" &&
+              localStorage.getItem("role") !== "admin" ? (
+                <LoginSignupLayout />
+              ) : (
+                <Base />
+              )
+            }
           >
             <Route
               index
-              element={role === "default" ? <Login /> : <Landing />}
+              element={
+                role === "default" &&
+                localStorage.getItem("role") !== "user" &&
+                localStorage.getItem("role") !== "admin" ? (
+                  <Login />
+                ) : (
+                  <Landing />
+                )
+              }
             />
             <Route path="/topmovies" element={<MovieCharts />} />
             <Route
